@@ -1,0 +1,24 @@
+{% paginate blog.articles by 12 %}
+
+  {% render 'page-title', title: page_title %}
+
+  <section class="blog">
+
+    {% if blog.articles != blank %}
+
+      {% render 'blog-filter' %}
+
+      {% for article in blog.articles %}
+        {% render 'blog-item' with article: article %}
+      {% endfor %}
+
+      {%- if paginate.pages > 1 -%}
+        {% render 'pagination', paginate: paginate %}
+      {%- endif -%}
+
+    {% else %}
+      <div class="blog__empty">{{ 'blog.general.no_articles' | t }}</div>
+    {% endif %}
+  </section>
+
+{% endpaginate %}

@@ -1,0 +1,33 @@
+{% if classes == blank %}
+  {% assign classes = '' %}
+{% endif %}
+
+<div class="actions {{ classes | join: ' ' }}">
+
+  <a href="/search" class="main-header__search">
+    {% render 'icon-search' %}
+    {{ 'layout.search.title' | t }}
+  </a>
+
+  {% if shop.customer_accounts_enabled %}
+    <div class="main-header__account">
+      {% if customer %}
+        <a href="{{ routes.account_url }}" class="main-header__account-link">
+      {% else %}
+        <a href="{{ routes.account_login_url }}" class="main-header__account-link">
+      {% endif %}
+        {{ 'layout.customer.account' | t }}
+      </a>
+    </div>
+  {% endif %}
+
+  <a href="{{ routes.cart_url }}">
+    <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+    <span data-cart-count>{{ cart.item_count }}</span>
+  </a>
+
+  <button>
+    Burger goes here
+  </button>
+
+</div>

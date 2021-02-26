@@ -1,0 +1,66 @@
+{% paginate search.results by 12 %}
+
+  {% if search.performed %}
+    {% assign pageTitle = 'search.results_with_count' | t: terms: search.terms, count: search.results_count %}
+  {% else %}
+    {% assign pageTitle = 'search.title' | t %}
+  {% endif %}
+
+  {% render 'page-title', title: pageTitle %}
+
+  {% render 'search-form' %}
+
+  {% if search.performed %}
+    {% render 'search-filter' %}
+  {% endif %}
+
+  <div class="search">
+    {% if search.performed %}
+      {% if search.results_count == 0 %}
+        <section class="search__empty">
+          <h4>{{ 'search.no_results_html' | t: terms: search.terms }}</h4>
+        </section>
+      {% else %}
+        {% if search.types contains 'product' %}
+          <div class="search__results" data-search-type="products">
+            <section class="collection">
+              {% for product in search.results %}
+                {% if product.object_type == 'product' %}
+                  {% render 'collection-product', product: product %}
+                {% endif %}
+              {% endfor %}
+            </section>
+          </div>
+        {% endif %}
+
+        {% if search.types contains 'article' %}
+          <div class="search__results" data-search-type="articles">
+            <div class="blog">
+              {% for article in search.results %}
+                {% if article.object_type == 'article' %}
+                  {% render 'blog-item', article: article %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if search.types contains 'page' %}
+          <div class="search__results" data-search-type="pages">
+            <div class="page">
+              {% for page in search.results %}
+                {% if page.object_type == 'page' %}
+                  {% render 'page-item', page: page %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {%- if paginate.pages > 1 -%}
+          {% render 'pagination', paginate: paginate %}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+{% endpaginate %}

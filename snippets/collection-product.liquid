@@ -1,0 +1,22 @@
+{% if classes == blank %}
+  {% assign classes = '' %}
+{% endif %}
+
+<a href="{{ product.url | within: collection }}" title="{{ product.title }}" class="collection-product {{ classes | join: ' ' }}" itemscope itemtype="http://schema.org/Product">
+  <div class="collection-product__image">
+    {% render 'image-component',
+      image: product.featured_image,
+      sizes: '(min-width: 1020px) 30vw, 50vw',
+      classes: 'collection-product__image-figure objFit'
+    %}
+  </div>
+  <div class="collection-product__content">
+    <div class="collection-product__content-title" itemprop="name">
+      {{ product.title }}
+    </div>
+    <div class="collection-product__content-vendor" itemprop="vendor">
+      {{ product.vendor }}
+    </div>
+  </div>
+  {% render 'product-price', product: product %}
+</a>

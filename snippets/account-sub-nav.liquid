@@ -1,0 +1,13 @@
+<nav class="account__sub-nav sub-nav">
+  <ul class="sub-nav__list">
+    <li class="sub-nav__list-item {% if request.path == routes.account_url %}sub-nav__list-item--active{% endif %}">
+      <a href="{{ routes.account_url }}">{{ 'customer.account.dashboard' | t }}</a>
+    </li>
+    <li class="sub-nav__list-item  {% if request.path == routes.account_addresses_url %}sub-nav__list-item--active{% endif %}">
+      <a href="{{ routes.account_addresses_url }}">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+    </li>
+    <li class="sub-nav__list-item">
+      <a href="{{ routes.account_logout_url }}">{{ 'customer.account.log_out' | t }}</a>
+    </li>
+  </ul>
+</nav>

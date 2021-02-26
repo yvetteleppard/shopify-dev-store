@@ -1,0 +1,53 @@
+{% if sizes == blank %}
+  {% assign sizes = '100vw' %}
+{% endif %}
+
+{% assign image_widths = '200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000' | split: ',' %}
+
+{% unless nofilter %}
+  {% assign nofilter = false %}
+{% endunless %}
+
+{% if resize == blank or resize == true %}
+  {% assign defaultSrc = image %}
+  {% capture sources %}
+    {% assign srcset = '' | split: '' %}
+    {% for width in image_widths %}
+      {% assign imgWidth = width | append: 'x' %}
+      {% assign imgWidthSrc = width | append: 'w' %}
+      {% if asset %}
+        {% capture newImgUrl %}
+          {{ image | asset_img_url: imgWidth }} {{ imgWidthSrc}}{% unless forloop.last %}, {% endunless %}
+        {% endcapture %}
+      {% elsif file %}
+        {% capture newImgUrl %}
+          {{ image | file_img_url: imgWidth }} {{ imgWidthSrc}}{% unless forloop.last %}, {% endunless %}
+        {% endcapture %}
+      {% elsif nofilter == true %}
+        {% capture newImgUrl %}
+          {{ image }} {{ imgWidthSrc }}{% unless forloop.last %}, {% endunless %}
+        {% endcapture %}
+      {% else %}
+        {% capture newImgUrl %}
+          {{ image | img_url: imgWidth }} {{ imgWidthSrc}}{% unless forloop.last %}, {% endunless %}
+        {% endcapture %}
+      {% endif %}
+      {% assign newSrcSet = newImgUrl | split: '' %}
+      {% assign srcset = srcset | concat: newSrcSet %}
+    {% endfor %}
+    src="{{ image | img_url: '25x' }}"
+    data-lazy-load-src="{{ image | img_url: '1200x' }}"
+    data-lazy-load-srcset="{{ srcset }}"
+  {% endcapture %}
+{% else %}
+  {% capture sources %}
+    data-lazy-load-src="{{ image | img_url: '1200x' }}"
+  {% endcapture %}
+{% endif %}
+
+<figure class="{{ classes }}">
+  <img {{ sources }}
+      sizes="{{ sizes }}"
+      alt="{{ image.alt | escape }}"
+      crossorigin />
+</figure>

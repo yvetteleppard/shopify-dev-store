@@ -1,0 +1,170 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Superrb Starter Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Superrb",
+    "theme_documentation_url": "https:\/\/github.com\/superrbstudio\/superrb-themekit",
+    "theme_support_url": "https:\/\/github.com\/superrbstudio\/superrb-themekit\/issues"
+  },
+  {
+    "name": "Company",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Address"
+      },
+      {
+        "type": "text",
+        "id": "address_street",
+        "label": "Street address",
+        "default": "14 The Precinct"
+      },
+      {
+        "type": "text",
+        "id": "address_city",
+        "label": "City",
+        "default": "Hayling Island"
+      },
+      {
+        "type": "text",
+        "id": "address_county",
+        "label": "County",
+        "default": "Hampshire"
+      },
+      {
+        "type": "text",
+        "id": "address_postcode",
+        "label": "Postcode",
+        "default": "PO11 9BS"
+      },
+      {
+        "type": "text",
+        "id": "address_country",
+        "label": "Country",
+        "default": "UK"
+      },
+      {
+        "type": "text",
+        "id": "address_lat",
+        "label": "Latitude"
+      },
+      {
+        "type": "text",
+        "id": "address_long",
+        "label": "Longitude"
+      },
+      {
+        "type": "header",
+        "content": "Contact details"
+      },
+      {
+        "type": "text",
+        "id": "company_email",
+        "label": "Email",
+        "default": "hello@superrb.com"
+      },
+      {
+        "type": "text",
+        "id": "company_phone",
+        "label": "Phone",
+        "default": "+44 20 3397 9784"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social media links"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram link"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter link"
+      },
+      {
+        "type": "text",
+        "id": "social_linkedin_link",
+        "label": "LinkedIn link"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest link"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube link"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "Vimeo link"
+      },
+      {
+        "type": "header",
+        "content": "Social sharing"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_sharing_blog",
+        "label": "Enable sharing for blog articles",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": "Share on Facebook",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": "Tweet on Twitter",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_pinterest",
+        "label": "Pin on Pinterest",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_linkedin",
+        "label": "Share on LinkedIn",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_email",
+        "label": "Share via Email",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Enable cart notes",
+        "default": true
+      }
+    ]
+  }
+]

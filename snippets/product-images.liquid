@@ -1,0 +1,35 @@
+<div class="product__slideshow-container product-slideshow-container">
+  <div class="product-slideshow-container__slideshow product-slideshow">
+    <div class="slideshow">
+      {% if product.images.size >= 1 %}
+      <div class="slideshow__slides">
+        {% for image in product.images %}
+          <div class="slideshow__slide" data-slide="{{forloop.index}}">
+            {% render 'image-component' with
+              image: image,
+              sizes: '(min-width: 1020px) 50vw, 100vw'
+            %}
+          </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="slideshow__empty">
+        <span>
+          {{'product.slideshow.no_images' | t }}
+        </span>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div
+    class="product-slideshow-container__thumbnails product-thumbnails{% if product.images.size < 2 %} hide{% endif %}">
+    {% for image in product.images %}
+      <button data-slide="{{forloop.index}}">
+        {% render 'image-component' with
+          image: image,
+          sizes: '(min-width: 1020px) 10vw, 25vw'
+        %}
+      </button>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<section class="section search-filter">
+    <nav class="search-filter__filter filter">
+        <ul class="filter__list">
+            <li class="filter__list-item {% if search.types contains 'product' %}active{% endif %}">
+                <a href="/search?type=product&q={{search.terms}}">{{ 'search.filters.products'|t }}</a>
+            </li>
+            <li class="filter__list-item {% if search.types contains 'article' %}active{% endif %}">
+                <a href="/search?type=article&q={{search.terms}}">{{ 'search.filters.posts'|t }}</a>
+            </li>
+            <li class="filter__list-item {% if search.types contains 'page' %}active{% endif %}">
+                <a href="/search?type=page&q={{search.terms}}">{{ 'search.filters.pages'|t }}</a>
+            </li>
+        </ul>
+    </nav>
+</section>

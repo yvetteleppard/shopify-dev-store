@@ -1,0 +1,26 @@
+{% render 'breadcrumbs' %}
+
+{% render 'page-title', title: page_title %}
+
+<section class="cart">
+  {% if cart.item_count > 0 %}
+    <form action="{{ routes.cart_url }}" method="post" novalidate class="cart__form cart-form" >
+      <div class="cart-form__column--left">
+        {% render 'cart-table' %}
+        <a class="cart-form__back" href="{{ routes.all_products_collection_url }}">
+          {{ 'cart.general.continue_shopping' | t }}
+        </a>
+      </div>
+      <div class="cart-form__column--right">
+        {% render 'cart-summary' %}
+      </div>
+    </form>
+  {% else %}
+    <div class="cart__empty">
+      <h2 class="cart__empty-title">{{ 'cart.general.empty' | t }}</h2>
+      <a href="{{ routes.all_products_collection_url }}" >
+        {{ 'cart.general.continue_shopping' | t }}
+      </a>
+    </div>
+  {% endif %}
+</section>

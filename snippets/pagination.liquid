@@ -1,0 +1,33 @@
+<section class="section pagination">
+  <span class="prev {% if paginate.previous == blank %}disabled{% endif %}">
+    {% if paginate.previous %}
+      <a href="{{ paginate.previous.url }}">
+    {% endif %}
+    <span class="screenreader-text">{{ "general.pagination.previous" | t }}</span>
+    {% if paginate.previous %}
+      </a>
+    {% endif %}
+  </span>
+
+  {% for part in paginate.parts %}
+    <span class="page {% if part.title == paginate.current_page %}active{% endif %}"{% if part.title == paginate.current_page %} aria-current="page"{% endif %}>
+      {% if part.is_link %}
+        <a href="{{ part.url }}">
+      {% endif %}
+          {{ part.title }}
+      {% if part.is_link %}
+        </a>
+      {% endif %}
+    </span>
+  {% endfor %}
+
+  <span class="next {% if paginate.next == blank %}disabled{% endif %}">
+    {% if paginate.next %}
+      <a href="{{ paginate.next.url }}">
+    {% endif %}
+    <span class="screenreader-text">{{ "general.pagination.next" | t }}</span>
+    {% if paginate.next %}
+      </a>
+    {% endif %}
+  </span>
+</section>

@@ -1,0 +1,24 @@
+<!-- Markup template for discount item -->
+<dl {% unless item.original_line_price != item.final_line_price %}class="hide" {% endunless %}data-cart-item-discounted-price-group>
+  <dt>
+    <span class="screenreader-text">{{ 'cart.label.regular_total' | t }}</span>
+  </dt>
+  <dd>
+    <s data-cart-item-original-price>{{ item.original_line_price | money }}</s>
+  </dd>
+  <dt>
+    <span class="screenreader-text">{{ 'cart.label.discounted_total' | t }}</span>
+  </dt>
+  <dd>
+    <span class="order-discount" data-cart-item-final-price>{{ item.final_line_price | money }}</span>
+  </dd>
+</dl >
+
+
+{{ 'cart.label.regular_total' | t }}
+{{ 'cart.label.discounted_total' | t }}
+
+<!-- Markup template for regular price item -->
+<div {% if item.original_line_price != item.final_line_price %}class="hide" {% endif %}data-cart-item-regular-price-group>
+  <span data-cart-item-regular-price>{{ item.original_line_price | money }}</span>
+</div>

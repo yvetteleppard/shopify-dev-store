@@ -1,0 +1,27 @@
+{% if classes == blank %}
+  {% assign classes = '' %}
+{% endif %}
+
+{%- assign socials = 'Instagram,Facebook,Twitter,Linkedin,Pinterest,Youtube,Vimeo' | split: ',' -%}
+<div class="social-links {{ classes | join: ' ' }}">
+  <h4 class="screenreader-text">{{ 'general.social.social_links'|t }}</h4>
+  <ul class="social-links__list">
+    {%- for social in socials -%}
+      {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+      {%- assign social_icon = social | prepend: 'icon-' | downcase -%}
+      {%- assign icon_handle = social | downcase -%}
+      {% if settings[social_link] != blank %}
+        <li class="social-links__list-item">
+          <a href="{{ settings[social_link] }}"
+            target="_blank"
+            rel="noopener"
+            title="{{ 'general.social.social_platform' | t: name: shop.name, platform: social }}"
+            class="social-links__list-link">
+            {% render 'social-icon', icon: icon_handle %}
+            <span class="screenreader-text">{{ social }}</span>
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,26 @@
+{% render 'page-title', title: page_title %}
+
+<section class="list-collections">
+  <div class="list-collections__inner">
+    {% for collection in collections %}
+      {% if collection.image != blank or collection.products.first != blank %}
+        <div class="list-collections__item list-collection">
+          <div class="list-collection__image">
+            {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
+            {% render 'image-component' with
+              image: image_object,
+              sizes: '(min-width: 720px) 50vw, 100vw',
+            %}
+          </div>
+          <div class="list-collection__content rte">
+            <h2 class="list-collection__content-title">{{ collection.title }}</h2>
+            {% if collection.description != blank %}
+              <p class="list-collection__content-description">{{ collection.description | strip_html | truncatewords: 30 }}</p>
+            {% endif %}
+            {% render 'button', url: collection.url, text: collection.title, classes: 'list-collection__content-button' %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>

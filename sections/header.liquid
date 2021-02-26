@@ -1,0 +1,18 @@
+<header class="main-header" role="banner">
+
+  {% render 'main-header-nav' with
+    classes: 'main-header__nav',
+    menu: 'main-menu'
+  %}
+
+  {% render 'logo' with
+    classes: 'main-header__logo',
+    link: routes.root_url,
+    name: 'Superrb'
+  %}
+
+  {% render 'main-header-actions' with
+    classes: 'main-header__actions'
+  %}
+
+</header>

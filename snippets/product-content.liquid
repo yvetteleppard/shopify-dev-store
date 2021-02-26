@@ -1,0 +1,26 @@
+<div class="product__content product-content" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+  <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
+
+  <h1 class="product-content__title">{{product.title}}</h1>
+  <span class="product-content__vendor">{{product.vendor}}</span>
+  <div class="product-content__description">{{product.description}}</div>
+
+  {%- comment -%}Requires testing in a live enviornemnt{%- endcomment -%}
+  <!-- {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
+    <div class="product-content__policies rte" data-product-policies>
+      {%- if shop.taxes_included -%}
+        {{ 'products.product.include_taxes' | t }}
+      {%- endif -%}
+      {%- if shop.shipping_policy.body != blank -%}
+        {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+      {%- endif -%}
+    </div>
+  {%- endif -%} -->
+
+  {% render 'product-content-form', product: product %}
+
+  {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+
+</div>
+

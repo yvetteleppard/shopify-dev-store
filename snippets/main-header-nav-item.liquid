@@ -1,0 +1,30 @@
+<li class="main-nav__list-item main-nav__list-item--subnav {% if link.active or link.child_active %}main-nav__list-item--active{% endif %}">
+  <a href="{{ link.url }}" class="main-nav__list-link" {% if link.current %} aria-current="page"{% endif %}>
+    {{ link.title }}
+  </a>
+  {% if link.links != blank %}
+    <ul class="main-nav__list-sub-nav sub-nav-list">
+      {% for childLink in link.links %}
+        <li class="sub-nav-list__item {% if childLink.active %}sub-nav-list__item--active{% endif %}">
+          <a href="{{ childLink.url }}" class="sub-nav-list__link" {% if childlink.current %} aria-current="page"{% endif %}>{{ childLink.title | escape }}</a>
+          
+          {% if childlink.links != blank %}
+            Test
+            <ul>
+            {% for grandchildlink in childlink.links %}
+              <li class="">
+                <a href="{{ grandchildlink.url }}"
+                class=""
+                {% if grandchildlink.current %} aria-current="page"{% endif %}>
+                  <span class="">{{ grandchildlink.title | escape }}</span>
+                </a>
+              </li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</li>

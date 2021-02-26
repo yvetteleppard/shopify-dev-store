@@ -1,0 +1,25 @@
+<section class="section search-form">
+  <form action="{{ routes.search_url }}" method="get" role="search"  class="search-form__form form">
+    {% comment %}
+      By default, search only searches products.
+      I have removed this to search everything instead. To change this add the hidden field below, options are article, page or product
+      <input type="hidden" name="type" value="product" />
+    {% endcomment %}
+    <input type="hidden" name="type" value="{% if search.types contains 'product' %}product{% else if search.types contains 'page' %}page{% else %}article{% endif %}" />
+    <div class="form__row form-row form-row--search">
+      <label for="Search" class="screenreader-text">
+        {{ 'search.placeholder' | t }}
+      </label>
+      <input type="search"
+          name="q"
+          id="Search"
+          value="{{ search.terms | escape }}"
+          placeholder="{{ 'search.placeholder' | t }}">
+    </div>
+    <div class="form__row form-row form-row--button">
+      {%- capture buttonText -%}{{ 'search.submit' | t }}{%- endcapture -%}
+      {%- capture icon -%}{% render 'icon-search' %}{%- endcapture -%}
+      {% render 'button', type: 'submit', text: buttonText, icon: icon  %}
+    </div>
+  </form>
+</section>

@@ -1,0 +1,18 @@
+{% if menu != blank  %}
+  {% assign navLinks = linklists[menu].links %}
+
+  {% if classes == blank %}
+    {% assign classes = '' %}
+  {% endif %}
+
+  <nav class="footer-nav {{ classes | join: ' ' }}" role="contentinfo">
+    <ul class="footer-nav__list">
+      {% for link in navLinks %}
+        <li class="footer-nav__list-item">
+          <a href="{{ link.url }}" class="footer-nav__list-link"
+          {% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}

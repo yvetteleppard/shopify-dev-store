@@ -1,0 +1,14 @@
+  <page class="page__item page-item">
+    <a href="{{ page.url }}" title="{{ page.title }}" class="page-item__link">
+      <div class="page-item__content">
+        <h3 class="page-item__content-heading"><a href="{{ page.url }}">{{page.title}}</a></h3>
+        <div class="page-item__content-summary rte">
+            <p>
+              {{ page.content | strip_html | truncatewords: 30 }}
+            </p>
+        </div>
+        {% assign readMoreLink = 'pages.page.link_text' | t %}
+        {% include 'text-link', url: page.url, text: readMoreLink %}
+      </div>
+    </a>
+  </page>

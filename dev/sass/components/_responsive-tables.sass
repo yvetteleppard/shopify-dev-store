@@ -1,0 +1,41 @@
+.responsive-table
+  @media (max-width: $maxTablet)
+    width: 100%
+    max-width: $tablet
+  thead
+    @media (max-width: $maxTablet)
+      display: none
+  tr
+    @media (max-width: $maxTablet)
+      display: block
+  th,
+  td
+    @media (max-width: $maxTablet)
+      display: block
+      margin: 0
+      padding: .5em 0
+      text-align: right
+  td::before
+    content: attr(data-label)
+    float: left
+    padding-right: 10px
+    text-align: center
+    font-weight: 600
+    @media (min-width: $tablet)
+      display: none
+
+// Add a keyline between rows
+.responsive-table-row + .responsive-table-row,
+tfoot > .responsive-table-row:first-child
+  @media (max-width: $maxTablet)
+    position: relative
+  &::after
+    content: ''
+    position: absolute
+    top: 0
+    right: 1em
+    left: 1em
+    display: block
+    border-bottom: 1px solid $black
+    @media (min-width: $tablet)
+      display: none

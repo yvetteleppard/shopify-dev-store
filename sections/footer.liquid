@@ -1,0 +1,22 @@
+<footer class="main-footer" id="main-footer" role="contentinfo">
+  <div class="main-footer__inner">
+
+    {% render 'social-links' with
+      classes: 'main-footer__social-links'
+    %}
+
+    {% render 'footer-nav' with
+      classes: 'main-footer__nav',
+      menu: 'footer'
+    %}
+
+    <div class="main-footer__copyright footer-copyright">
+      {{ 'footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name }}. {{ 'footer.website_by' | t }} <a href="https://www.superrb.com" target="_blank" rel="noopener nofollow" class="footer-copyright__link" title="{{ 'footer.website_by' | t }} {{ 'footer.superrb' | t }}">{{ 'footer.superrb' | t }}</a>
+    </div>
+
+    <div class="main-footer__payment-methods">
+      {% render 'payment-icons' %}
+    </div>
+
+  </div>
+</footer>

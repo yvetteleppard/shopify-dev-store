@@ -1,0 +1,47 @@
+#skip-to,
+#back-to-top
+  left: 0
+  opacity: 0
+  pointer-events: none
+  position: fixed
+  z-index: 9999
+
+  &:focus-within
+    opacity: 1
+    pointer-events: all
+
+#skip-to
+  top: 0
+
+  a
+    background: $white
+    color: $black
+    display: inline-block
+    text-decoration: none
+    padding: .5em 1em
+    margin-right: .5em
+
+#back-to-top
+  left: auto
+  bottom: 1em
+  right: 1em
+  background: $white
+  color: $black
+  padding: .5em 1em
+  text-decoration: none
+
+body
+  height: 100%
+  overflow-x: hidden
+  position: relative
+  width: 100vw
+
+.hide
+  display: none !important
+
+.lock-scroll
+  @extend %lockScroll
+
+#preview-bar-iframe
+  display: none !important
+

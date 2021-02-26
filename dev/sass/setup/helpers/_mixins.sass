@@ -1,0 +1,73 @@
+@function between($from, $to, $fromWidth, $toWidth)
+  $slope: ($from - $to) / ($fromWidth - $toWidth)
+  $base: $to - $slope * $toWidth
+
+  @return calc(#{$base} + #{100vw * $slope})
+
+=clamp($property, $from, $to, $fromWidth, $toWidth)
+  #{$property}: $from
+
+  @media (min-width: $fromWidth)
+    #{$property}: between($from, $to, $fromWidth, $toWidth)
+
+  @media (min-width: $toWidth)
+    #{$property}: $to
+
+@function em($size)
+  @return $size / $fontSize * 1em
+
+=primaryFont
+  font-family: $primaryFont
+
+=secondaryFont
+  font-family: $secondaryFont
+
+=cover($padding: 0)
+  bottom: $padding
+  left: $padding
+  position: absolute
+  right: $padding
+  top: $padding
+
+=gutterLeft
+  +clamp('padding-left', $gutterMobile, $gutterDesktop, $largeMobile, $smallDesktop)
+
+=gutterRight
+  +clamp('padding-right', $gutterMobile, $gutterDesktop, $largeMobile, $smallDesktop)
+
+=gutters
+  +gutterLeft
+  +gutterRight
+
+=spacingTop
+  +clamp('padding-top', $spacingMobile, $spacingDesktop, $largeMobile, $smallDesktop)
+
+=spacingBottom
+  +clamp('padding-bottom', $spacingMobile, $spacingDesktop, $largeMobile, $smallDesktop)
+
+=spacing
+  +spacingTop
+  +spacingBottom
+
+=opacityHover
+  transition: opacity $transitionDuration $transitionTimingFunction
+  opacity: 1
+
+  &:hover
+    opacity: $opacityHover
+
+%wysiwyg
+  a
+    +opacityHover
+
+%lockScroll
+  overflow: hidden
+
+  .body-overlay
+    opacity: 1
+
+%cappedWidth
+  max-width: $cappedWidth
+  width: 100%
+  margin-left: auto
+  margin-right: auto

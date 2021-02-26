@@ -1,0 +1,32 @@
+{% paginate collection.products by 12 %}
+
+  {% render 'breadcrumbs' %}
+
+  {% render 'collection-header', collection: collection %}
+
+  {% render 'collection-filter', collection: collection %}
+
+  <section class="section collection">
+    {% if collection.products != blank %}
+      <ul class="collection__list">
+        {% for product in collection.products %}
+          <li class="collection__list-item">
+            {% render 'collection-product' with
+              classes: 'collection__list-link',
+              product: product
+            %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="collection__empty">
+        <p>{{ 'collection.general.no_matches' | t }}</p>
+      </div>
+    {% endif %}
+  </section>
+
+  {% if paginate.pages > 1 %}
+    {% render 'pagination', paginate: paginate %}
+  {% endif %}
+
+{% endpaginate %}

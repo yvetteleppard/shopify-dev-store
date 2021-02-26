@@ -1,0 +1,239 @@
+// .cart
+//   @extend %cappedWidth
+//   @extend %gutters
+//   @include spacer('margin-bottom')
+//   position: relative
+
+//   &__empty
+//     @include spacer('margin-bottom')
+//     text-align: center
+
+//     &-title
+//       margin-bottom: .5em
+
+//     a
+//       @extend %textLink
+
+//   p
+//     margin-bottom: 0
+
+// .cart-form
+//   display: flex
+//   align-items: flex-start
+//   justify-content: center
+//   flex-wrap: wrap
+//   @media (min-width: $smallDesktop)
+//     flex-wrap: nowrap
+//     justify-content: flex-end
+//   @media (max-width: $maxSmallDesktop)
+//     padding-bottom: 3em
+
+//   &__column
+//     &--left
+//       @include spacer('margin-bottom')
+//       flex: 0 0 100%
+//       @media (min-width: $smallDesktop)
+//         flex: 1 1 100%
+//     &--right
+//       flex: 0 0 100%
+//       @media (min-width: $tablet)
+//         flex: 0 0 32em
+//       @media (min-width: $smallDesktop)
+//         flex: 0 0 20em
+//         margin-left: 1.5em
+//       @media (min-width: $largeDesktop)
+//         flex: 0 0 24em
+
+//   &__back
+//     @extend %gutters
+//     @include spacer('margin-bottom')
+//     +clamp('margin-top', $spacerMobile / 2, $spacerDesktop / 2, $largeMobile, $smallDesktop)
+//     display: block
+//     @media (min-width: $smallDesktop)
+//       padding: 0
+//     @media (max-width: $maxSmallDesktop)
+//       position: absolute
+//       bottom: 0
+//       left: 0
+//       right: 0
+//       margin: auto
+//       text-align: center
+
+// .cart-table
+//   border-collapse: collapse
+//   background: $thirdColour
+//   width: 100%
+//   @media (min-width: $tablet)
+//     padding: 0
+//     width: 100%
+
+//   .quantity-incrementor
+//     justify-content: flex-end
+//     @media (min-width: $tablet)
+//       justify-content: center
+
+//   th, td
+//     &:first-of-type
+//       padding-left: $cartTablePadding
+
+//     &:last-of-type
+//       padding-right: $cartTablePadding
+
+//   th
+//     padding: .5em 0
+//     font-weight: $secondFontWeight
+
+//     &:first-of-type
+//       text-align: left
+
+//   td
+//     padding: .5em $cartTablePadding
+//     vertical-align: middle
+//     @media (min-width: $tablet)
+//       text-align: center
+//       padding: 1em 0 1em 0
+
+//     &:nth-of-type(1)
+//       width: 20%
+//       max-width: 120px
+//       overflow: hidden
+//       @media (max-width: $maxTablet)
+//         padding-right: 0
+
+//     &:nth-of-type(1), &:nth-of-type(2)
+//       text-align: left
+//       @media (max-width: $maxTablet)
+//         display: inline-block
+
+//     &:nth-of-type(2)
+//       width: 75%
+//       padding-left: 1em
+
+//     &:nth-of-type(4)
+//       @media (max-width: $maxTablet)
+//         display: flex
+//         align-items: center
+//         justify-content: space-between
+
+//     &:nth-of-type(3), &:nth-of-type(5)
+//       @media (max-width: $maxTablet)
+//         padding-right: calc(#{$minTouchSize} + #{$cartTablePadding})
+
+//     img
+//       margin: 0
+//       width: 100%
+
+//     input[type="number"]
+//       width: auto
+//       max-width: 50px
+
+//     a
+//       text-decoration: none
+
+//   h5
+//     margin: 1em auto 0 0
+
+//   .remove
+//     color: $firstColour
+//     position: relative
+//     margin: 0 0 1em
+//     display: block
+//     padding-left: 1em
+
+//     &::before, &::after
+//       content: ''
+//       position: absolute
+//       top: 50%
+//       left: 0
+//       display: block
+//       width: .75em
+//       height: 1px
+//       background: $firstColour
+
+//     &::before
+//       transform: rotate(45deg)
+
+//     &::after
+//       transform: rotate(135deg)
+
+// .cart-summary
+//   display: flex
+//   flex-direction: column
+
+//   &__back
+//     @include spacer('left')
+//     display: block
+//     font-weight: 600
+//     padding: 0
+//     color: $firstColour
+//     text-align: center
+//     @media (min-width: $smallDesktop)
+//       position: absolute
+//       bottom: 0
+
+//     a
+//       text-decoration: none
+
+//       &::before
+//         content: ''
+//         display: inline-block
+//         width: .4em
+//         height: .4em
+//         border: solid $firstColour
+//         border-width: 2px 0 0 2px
+//         transform: rotate(-45deg)
+//         margin: 0 0.5em 0 0
+
+//   &__inner
+//     @include spacer('margin-bottom')
+//     padding: 2em
+//     background: $thirdColour
+//     @media (min-width: $smallDesktop)
+//       margin: 0
+
+//   &__title
+//     margin-bottom: .75em
+//     text-align: center
+
+//   &__total
+//     font-size: 1.375em // 22px
+//     display: flex
+//     justify-content: space-between
+//     margin-bottom: .5em
+
+//     &-label
+//       font-weight: $secondFontWeight
+
+//   &__shipping
+//     text-align: center
+//     margin: 0 0 1em
+
+//   &__buttons
+//     .button
+//       margin: 0 0 .75em
+//       width: 100%
+
+//       &:last-of-type
+//           margin: 0
+
+//     .additional-checkout-buttons
+//       display: block
+//       margin: .5em 0 0
+
+//       #additional-checkout-buttons
+//         display: flex
+//         justify-content: center
+//         flex-wrap: wrap
+
+//         span
+//           flex: 0 0 100%
+//           margin: 0 0 .5em
+//           text-align: center
+
+//   &__discounts
+//     @include spacer('margin-bottom')
+//     text-align: center
+//     @media (min-width: $smallDesktop)
+//       background-color: $thirdColour
+//       padding: 0 2em 2em 2em
+//       margin-bottom: 0

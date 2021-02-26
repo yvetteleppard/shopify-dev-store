@@ -1,0 +1,32 @@
+%buttonBasics
+  appearance: none
+  background: none
+  border-radius: 0
+  border: 0
+  box-shadow: none
+  cursor: pointer
+  display: inline-block
+  font-family: inherit
+  font-style: inherit
+  font-weight: inherit
+  letter-spacing: inherit
+  line-height: inherit
+  margin: 0
+  overflow: hidden
+  padding: 0
+  position: relative
+  text-align: center
+  text-decoration: none
+  user-select: none
+  vertical-align: middle
+  white-space: normal
+  width: auto
+
+%button
+  @extend %buttonBasics
+  background: $black
+  color: $white
+  padding: .5em 1em
+
+.button
+  @extend %button

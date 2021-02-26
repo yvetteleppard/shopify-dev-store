@@ -1,0 +1,33 @@
+<section class="section cookies" data-section-id="{{ section.id }}" role="banner">
+  {% if section.settings.title != blank %}
+    <h3 class="cookies__title">{{ section.settings.title }}</h3>
+  {% endif %}
+
+  {% if section.settings.text != blank %}
+    <div class="cookies__message">{{ section.settings.text }}</div>
+  {% endif %}
+
+  <div class="cookies__buttons">
+    <button class="cookies__buttons-button cookies__buttons-button--accept button button--outline">{{ 'cookies.accept' | t }}</button>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Cookies",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Cookies"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+        "default": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam quaerat quis nobis nostrum quod, vitae pariatur. Impedit quo labore harum! Aperiam consequuntur eos neque, mollitia ea quasi repellendus veritatis dolor."
+      }
+    ]
+  }
+{% endschema %}

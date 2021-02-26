@@ -1,0 +1,25 @@
+{% assign relatedArticles = '' %}
+{% assign relatedCount = 0 %}
+
+{% for relatedArticle in blogs.news.articles %}
+  {% if relatedCount < 3 %}
+    {% if relatedArticle.tags contains article.tags[0] and relatedArticle.id != article.id %}
+      {% assign articleRecord = relatedArticle %}
+      {% capture articleHTML %}
+        {% render 'blog-item' with article: articleRecord %}
+      {% endcapture %}
+      {% assign relatedArticles = relatedArticles | append: articleHTML %}
+      {% assign relatedCount = relatedCount | plus: 1 %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% unless relatedCount == 0 %}
+  <section class="blog blog--related">
+    <div class="blog__inner">
+      <div class="blog__list blog-list blog-list--related">
+        {{ relatedArticles }}
+      </div>
+    </div>
+  </section>
+{% endunless %}

@@ -1,0 +1,20 @@
+{%- comment -%}
+Due to limitations of the 'render' tag, variables cannot be passed as the snippet name.
+So, this is how i've got round it 🤷‍♂️
+{%- endcomment -%}
+
+{% if icon == 'facebook' %}
+  {% render 'icon-facebook' %}
+{% elsif icon == 'instagram' %}
+  {% render 'icon-instagram' %}
+{% elsif icon == 'twitter' %}
+  {% render 'icon-twitter' %}
+{% elsif icon == 'linkedin' %}
+  {% render 'icon-linkedin' %}
+{% elsif icon == 'pinterest' %}
+  {% render 'icon-pinterest' %}
+{% elsif icon == 'youtube' %}
+  {% render 'icon-youtube' %}
+{% elsif icon == 'vimeo' %}
+  {% render 'icon-vimeo' %}
+{% endif %}

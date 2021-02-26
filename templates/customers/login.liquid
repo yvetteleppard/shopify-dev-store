@@ -1,0 +1,36 @@
+{% render 'breadcrumbs' %}
+
+{% render 'page-title', title: page_title %}
+
+
+<div class="form-message form-message--success" id="ResetSuccess" tabindex="-1">
+  {{ 'customer.login.recover_password.success' | t }}
+</div>
+
+<section class="section info info--split" id="CustomerLoginForm">
+  <div class="info__block info-block">
+    {% render 'customer-login-form' %}
+  </div>
+  <div class="info__block info-block rte">
+    <h2 >{{ 'customer.login.create_account.title' | t }}</h2>
+    <p>{{ 'customer.login.create_account.text' | t }}</p>
+    {%- capture buttonText -%}{{ 'customer.login.create_account.button_text' | t }}{%- endcapture -%}
+    {% render 'button', url: routes.account_register_url, text: buttonText %}
+    {%- comment -%}
+      {% if shop.checkout.guest_login %}
+        <h2>{{ 'customer.login.guest_title' | t }}</h2>
+        {% form 'guest_login' %}
+          {%- capture buttonText -%}{{ 'customer.login.guest_continue' | t }}{%- endcapture -%}
+          {% render 'button', type: 'submit', text: buttonText  %}
+        {% endform %}
+      {% endif %}
+    {%- endcomment -%}
+  </div>
+</section>
+
+<section class="info" id="RecoverPasswordForm">
+  <div class="info__block info-block form-container">
+    {% render 'customer-recover-password-form' %}
+  </div>
+</section>
+

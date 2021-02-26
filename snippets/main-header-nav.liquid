@@ -1,0 +1,16 @@
+{% if menu != blank  %}
+  {% assign navLinks = linklists[menu].links %}
+
+  {% if classes == blank %}
+    {% assign classes = '' %}
+  {% endif %}
+
+  <nav class="main-nav {{ classes | join: ' ' }}" role="navigation" id="main-nav">
+    <ul class="main-nav__list">
+      {% for link in navLinks %}
+        {% render 'main-header-nav-item', link: link %}
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}
+

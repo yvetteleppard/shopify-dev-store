@@ -1,0 +1,31 @@
+<div class="cart-form__table">
+  <table class="cart-table responsive-table">
+    <thead>
+      <tr>
+        <th>{{ 'cart.label.product' | t }}</th>
+        <th>{{ 'cart.label.price' | t }}</th>
+        <th>{{ 'cart.label.quantity' | t }}</th>
+        <th>{{ 'cart.label.total' | t }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in cart.items %}
+      <tr class="responsive-table-row">
+        <td data-label="{{ 'customer.order.product' | t }}">
+          {% render 'cart-item-product', item: item %}
+        </td>
+        <td data-label="{{ 'cart.label.price' | t }}">
+          {% render 'cart-item-price', item: item %}
+        </td>
+        <td data-label="{{ 'cart.label.quantity' | t }}">
+          {% render 'quantity-incrementor' %}
+        </td>
+        <td data-label="{{ 'cart.label.total' | t }}">
+          {% render 'cart-item-total', item: item %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+

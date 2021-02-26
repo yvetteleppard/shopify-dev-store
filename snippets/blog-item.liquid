@@ -1,0 +1,30 @@
+<article class="blog-item">
+  <a href="{{ article.url }}" title="{{ article.title }}" class="blog-item__link">
+
+    {% render 'image-component' with
+      image: article.image,
+      sizes: '(min-width: 1020px) 33vw, 50vw',
+      classes: 'blog-item__image'
+    %}
+
+    {% if article.tags.size > 0 %}
+      {% render 'article-tags' with
+        tags: article.tags,
+        classes: 'blog-item__tags'
+      %}
+    {% endif %}
+
+    <h4 class="blog-item__title">{{ article.title }}</h4>
+
+    <div class="blog-item__author">{{ 'blog.article.by_author' | t: author: article.author }}</div>
+
+    <p class="blog-item__summary">
+      {% if article.excerpt.size > 0 %}
+        {{ article.excerpt }}
+      {% else %}
+        {{ article.content | strip_html | truncatewords: 30 }}
+      {% endif %}
+    </p>
+
+  </a>
+</article>

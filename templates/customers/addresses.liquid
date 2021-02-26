@@ -1,0 +1,48 @@
+{% paginate customer.addresses by 5 %}
+
+  {% render 'account-sub-nav' %}
+
+  {% render 'page-title', title: page_title %}
+
+  <section class="addresses">
+    {% for address in customer.addresses %}
+    <div class="addresses__address address {% if address == customer.default_address %}address--default{% endif %}"
+      data-address>
+
+      <div class="address__container">
+        {% if address == customer.default_address %}
+          <h4 class="address__heading">{{ 'customer.addresses.default' | t }}</h4>
+        {% endif %}
+
+        <div class="address__content">
+          {{ address | format_address }}
+        </div>
+        <div class="address__buttons">
+          <button class="text-link text-link--filled" type="button" data-address-toggle>
+            {{ 'customer.addresses.edit' | t }}
+          </button>
+
+          <form data-address-delete-form method="post" action="/account/addresses/{{ address.id }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit">
+              {{ 'customer.addresses.delete' | t }}
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {% render 'address-form', address: address %}
+
+    </div>
+    {% endfor %}
+  </section>
+
+  {% render 'addresses-new-address' %}
+
+  {% if paginate.pages > 1 %}
+    {% render 'pagination', paginate: paginate %}
+  {% endif %}
+
+{% endpaginate %}
+
+

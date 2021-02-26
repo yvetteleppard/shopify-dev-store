@@ -1,0 +1,11 @@
+{% unless shop.enabled_payment_types == empty %}
+  <span class="screenreader-text">{{ 'footer.payment_methods' | t }}</span>
+  <ul class="payment-icons">
+    {% for type in shop.enabled_payment_types %}
+      <li>
+        {{ type | payment_type_svg_tag: class: 'icon' }}
+        <span class="screenreader-text">{{ type }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endunless %}

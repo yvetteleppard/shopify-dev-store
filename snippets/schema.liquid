@@ -1,0 +1,29 @@
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "LocalBusiness",
+    "name": "{{ shop.name }}",
+    "image": "https:{{ 'logo.svg' | asset_url }}",
+    "logo": "https:{{ 'logo.svg' | asset_url }}",
+    "telephone": "{{ settings['company_phone'] }}",
+    "email" : "{{ settings['company_email'] }}",
+    "address": {
+      "streetAddress": "{{ settings['address_street'] }}",
+      "addressLocality": "{{ settings['address_city'] }}",
+      "addressRegion" : "{{ settings['address_county'] }}",
+      "postalCode":"{{ settings['address_postcode'] }}",
+      "addressCountry": "{{ settings['address_country'] }}"
+    },
+    "sameAs": [
+        "{{ settings.social_facebook_link }}",
+        "{{ settings.social_instagram_link }}",
+        "{{ settings.social_twitter_link }}",
+        "{{ settings.social_linkedin_link }}",
+        "{{ settings.social_pinterest_link }}",
+        "{{ settings.social_youtube_link }}",
+        "{{ settings.social_vimeo_link }}"
+      ],
+    "url": "{{ shop.url }}{{ page.url }}"
+  }
+</script>
+

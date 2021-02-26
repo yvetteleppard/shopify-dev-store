@@ -1,0 +1,17 @@
+<section class="section contact">
+  <h4>{{ 'contact.general.address'|t }}</h4>
+  <p>{{settings['address_street']}}<br>
+      {{settings['address_city']}}<br>
+      {{settings['address_county']}}<br>
+      {{settings['address_postcode']}}
+  </p>
+
+  <h4>{{ 'contact.general.phone'|t }}</h4>
+  <p><a href="tel:{{settings['company_phone'] | replace: ' ', '' }}" class="text-link">{{settings['company_phone']}}</a></p>
+
+  <h4>{{ 'contact.general.email'|t }}</h4>
+  <p><a href="mailto:{{settings['company_email']}}" class="text-link">{{settings['company_email']}}</a></p>
+
+  <h2>{{ 'contact.form.title'|t }}</h2>
+  {% render 'contact-form' %}
+</section>

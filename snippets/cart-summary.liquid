@@ -1,0 +1,65 @@
+<div class="cart-form__summary cart-summary">
+  <div class="cart-summary__inner">
+    <h3 class="cart-summary__title">{{ 'cart.summary.title' | t }}</h3>
+    {% if settings.cart_notes_enable %}
+      <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+      <textarea name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+    {% endif %}
+    <div class="cart-summary__total">
+      <div class="cart-summary__total-label">{{ 'cart.general.total' | t }}:</div>
+      <div class="cart-summary__total-price">{{ cart.total_price | money_with_currency }}</div>
+    </div>
+    {% if cart.total_discounts > 0 %}
+      <div class="cart-summary__discounts">{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</div>
+    {% endif %}
+    {%- assign cartDiscounts = 'template ' | split: ' ' -%}
+    {%- if cart.cart_level_discount_applications.size > 0 -%}
+      {%- assign cartDiscounts = cart.cart_level_discount_applications -%}
+    {%- endif -%}
+    {% unless cart.cart_level_discount_applications.size == 0 %}
+      <div data-cart-discount-wrapper>
+        <div class="order-discount-card-wrapper" data-cart-discount>
+          {%- for discount_application in cartDiscounts -%}
+            <span class="order-discount order-discount--title order-discount--cart">
+              <span class="visually-hidden">{{ 'customer.order.discount' | t }}:</span><span data-cart-discount-title>{{- discount_application.title -}}</span>
+            </span>
+            <span class="order-discount order-discount--cart order-discount--cart-total">
+              -<span data-cart-discount-amount>{{ discount_application.total_allocated_amount | money }}</span>
+            </span>
+          {%- endfor -%}
+        </div>
+      </div>
+    {% endunless %} 
+    {%- capture taxes_shipping_checkout -%}
+      {%- if shop.taxes_included and shop.shipping_policy.body != blank -%}
+        {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+      {%- elsif shop.taxes_included -%}
+        {{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}
+      {%- elsif shop.shipping_policy.body != blank -%}
+        {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+      {%- else -%}
+        {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
+      {%- endif -%}
+    {%- endcapture -%}
+    <div class="cart-summary__shipping">{{ taxes_shipping_checkout }}</div>
+    <div class="cart-summary__buttons">
+      {%- capture buttonText -%}{{ 'cart.general.update' | t }}{%- endcapture -%}
+      {% render 'button', type: 'submit', name: 'update', text: buttonText %}
+
+      {%- capture buttonText -%}{{ 'cart.general.checkout' | t }}{%- endcapture -%}
+      {% render 'button', type: 'submit', name: 'checkout', text: buttonText %}
+
+      {% if additional_checkout_buttons %}
+        <div class="additional-checkout-buttons">
+          <span>{{ 'cart.general.other_payment_types' | t }}</span>
+          {{ content_for_additional_checkout_buttons }}
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+  <div class="cart-summary__discounts">
+    <h4 class="cart-summary__discounts-title">{{ 'cart.general.discounts.title' | t }}</h4>
+    <p class="cart-summary__discounts-message">{{ 'cart.general.discounts.message' | t }}</p>
+  </div>
+</div>

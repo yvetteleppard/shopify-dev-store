@@ -1,0 +1,31 @@
+<!-- {% if classes == blank %}
+  {% assign classes = '' %}
+{% endif %}
+
+<div class="quantity-incrementor {{ classes | join: ' ' }}">
+  <label for="Quantity" class="quantity-incrementor__label screenreader-text">{{ 'products.product.quantity' | t }}:</label>
+  <button class="quantity-incrementor__minus" type="button"><span class="screenreader-text">{{ 'incrementor.minus' | t }}</span></button>
+  <input class="quantity-incrementor__input" type="number" id="updates_{{ item.key }}" name="updates[]" value="{{ item.quantity }}" min="1" aria-label="{{ 'cart.general.item_quantity' | t }}">
+  <button class="quantity-incrementor__plus" type="button"><span class="screenreader-text">{{ 'incrementor.plus' | t }}</span></button>
+</div> -->
+
+
+<!-- <div class="cart__qty">
+  <label for="updates_large_{{ item.key }}" class="cart__qty-label" data-quantity-label-desktop>{{ 'cart.label.quantity' | t }}</label>
+  <input id="updates_large_{{ item.key }}" class="cart__qty-input" type="number"
+    name="updates[]" value="{{ item.quantity }}" min="0" pattern="[0-9]*"
+  data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-desktop data-role="product-quantity-desktop">
+</div>
+<div class="cart__qty-error-message-wrapper cart__qty-error-message-wrapper--desktop hide" role="alert" data-cart-quantity-error-message-wrapper>
+  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+  {% render 'icon-error' %}
+  <span class="cart__qty-error-message" data-cart-quantity-error-message></span>
+</div> -->
+
+{%- comment -%}
+For product page
+<label for="Quantity">quantity</label>
+<input type="number" id="Quantity" name="quantity" value="1" min="1">
+<button type="submit" name="add" id="AddToCart">Add to cart</button>
+
+{%- endcomment -%}

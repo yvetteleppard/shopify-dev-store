@@ -1,0 +1,33 @@
+{% if classes == blank %}
+  {% assign classes = '' %}
+{% endif %}
+
+<div class="product-price {{ classes | join: ' ' }}" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+  <link itemprop="availability" href="http://schema.org/InStock">
+  <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+  <meta itemprop="price" content="{{ product.price | divided_by: 100.00 }}">
+  {% if product.compare_at_price > product.price %}
+    {% if product.price_varies %}
+      {%- assign sale_price = product.price | money -%}
+      {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+    {% else %}
+      {{ product.price | money }}
+    {% endif %}
+  {% else %}
+    {% if product.price_varies %}
+      {%- assign price = product.price | money -%}
+      {{ 'products.product.from_text_html' | t: price: price }}
+    {% else %}
+      {{ product.price | money }}
+    {% endif %}
+  {% endif %}
+
+  {% if product.compare_at_price > product.price %}
+    <span class="screenreader-text">{{ 'products.product.regular_price' | t }}</span>
+    <s>{{ product.compare_at_price | money }}</s>
+  {% endif %}
+
+  {% unless product.available %}
+    {{ 'products.product.sold_out' | t }}
+  {% endunless %}
+</div>
