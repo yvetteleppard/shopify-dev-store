@@ -9,7 +9,6 @@
   },
 
   "img": "<=resourcesPath>img/**/*.{png,jpg,jpeg,gif,svg,webp}",
-	"fonts": "<=resourcesPath>fonts/**/*.{eot,svg,ttf,woff,woff2}",
   "sass": "<=resourcesPath>sass/**/*.s{a,c}ss",
 
   "sass": {

@@ -115,13 +115,6 @@ gulp.task('js', () => {
     .pipe(gulpif(isProd,size({title: 'js'})))
 });
 
-gulp.task('fonts', () => {
-  return gulp.src(gulpConfig.fonts)
-    .pipe(changed(gulpConfig.dist.assets)) // ignore unchanged files
-    .pipe(gulp.dest(gulpConfig.dist.assets))
-    .pipe(gulpif(isProd, size({title: 'fonts'})));
-});
-
 gulp.task('browsersync', (done) => {
   browsersync.init({
     injectChanges: true,
@@ -146,10 +139,9 @@ gulp.task('browsersync', (done) => {
 gulp.task('watch', () => {
   gulp.watch(gulpConfig.sass.all, gulp.series('sass'));
   gulp.watch(gulpConfig.js.all, gulp.series('js'));
-  gulp.watch(gulpConfig.fonts, gulp.series('fonts'));
 });
 
-gulp.task('build', gulp.series('sass', 'js', 'fonts'));
+gulp.task('build', gulp.series('sass', 'js'));
 
-gulp.task('default', gulp.parallel(gulp.series('sass', 'js', 'fonts'), 'browsersync', 'watch'));
+gulp.task('default', gulp.parallel(gulp.series('sass', 'js'), 'browsersync', 'watch'));
 
