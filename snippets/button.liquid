@@ -9,11 +9,15 @@
     {% assign classes = '' %}
   {% endif %}
 
-  <{{ element }} 
+  {% if style == blank %}
+    {% assign style = 'primary' %}
+  {% endif %}
+
+  <{{ element }}
   {% if url != blank %}href="{{ url }}"{% endif %}
-  class="button {{ classes | join: ' ' }}"
+  class="button button--{{ style }} {{ classes | join: ' ' }}"
   {% if title %}title="{{ title }}"{% endif %}
-  {% if id is defined %}id="{{ id }}"{% endif %}
+  {% if id %}id="{{ id }}"{% endif %}
   {% if external %}target="_blank" rel="noopener"{% endif %}
   {% if type %}type="{{ type }}"{% endif %}
   {% if name %}name="{{ name }}"{% endif %}
