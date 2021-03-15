@@ -4,33 +4,33 @@
   {% assign element = 'button' %}
 {% endif %}
 
-{% if text != blank %}
-  {% if classes == blank %}
-    {% assign classes = '' %}
-  {% endif %}
 
-  {% if style == blank %}
-    {% assign style = 'primary' %}
-  {% endif %}
-
-  <{{ element }}
-  {% if url != blank %}href="{{ url }}"{% endif %}
-  class="button button--{{ style }} {{ classes | join: ' ' }}"
-  {% if title %}title="{{ title }}"{% endif %}
-  {% if id %}id="{{ id }}"{% endif %}
-  {% if external %}target="_blank" rel="noopener"{% endif %}
-  {% if type %}type="{{ type }}"{% endif %}
-  {% if name %}name="{{ name }}"{% endif %}
-  {% if role %}role="{{ role }}"{% endif %}
-  {% if label_a11y %}aria-label="{{ label_a11y }}"{% endif %}>
-    {% if icon %}
-      {{ icon  }}
-    {% endif %}
-    <span class="button__label">{{ text }}</span>
-    {% if label_a11y %}
-      <span class="screenreader-text">
-        {{ label_a11y }}
-      </span>
-    {% endif %}
-  </{{ element }}>
+{% if classes == blank %}
+  {% assign classes = '' %}
 {% endif %}
+
+{% if style == blank %}
+  {% assign style = 'primary' %}
+{% endif %}
+
+<{{ element }}
+{% if url != blank %}href="{{ url }}"{% endif %}
+class="button button--{{ style }} {{ classes | join: ' ' }}"
+{% if title %}title="{{ title }}"{% endif %}
+{% if id %}id="{{ id }}"{% endif %}
+{% if external %}target="_blank" rel="noopener"{% endif %}
+{% if type %}type="{{ type }}"{% endif %}
+{% if name %}name="{{ name }}"{% endif %}
+{% if role %}role="{{ role }}"{% endif %}
+{% if label_a11y %}aria-label="{{ label_a11y }}"{% endif %}>
+  {% if icon %}
+    {{ icon  }}
+  {% endif %}
+  <span class="button__label">{{ text }}</span>
+  {% if label_a11y %}
+    <span class="screenreader-text">
+      {{ label_a11y }}
+    </span>
+  {% endif %}
+</{{ element }}>
+
