@@ -9,7 +9,7 @@
             {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
             {% render 'image-component' with
               image: image_object,
-              sizes: '(min-width: 720px) 50vw, 100vw',
+              sizes: '(min-width: 45em) 50vw, 100vw',
             %}
           </div>
           <div class="list-collection__content rte">
