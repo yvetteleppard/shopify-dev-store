@@ -1,28 +1,25 @@
-<li class="main-nav__list-item main-nav__list-item--subnav {% if link.active or link.child_active %}main-nav__list-item--active{% endif %}">
+<li class="main-nav__list-item {% if link.links != blank %}main-nav__list-item--subnav{% endif %} {% if link.active or link.child_active %}main-nav__list-item--active{% endif %}">
   <a href="{{ link.url }}" class="main-nav__list-link" {% if link.current %} aria-current="page"{% endif %}>
     {{ link.title }}
   </a>
   {% if link.links != blank %}
-    <ul class="main-nav__list-sub-nav sub-nav-list">
-      {% for childLink in link.links %}
-        <li class="sub-nav-list__item {% if childLink.active %}sub-nav-list__item--active{% endif %}">
-          <a href="{{ childLink.url }}" class="sub-nav-list__link" {% if childlink.current %} aria-current="page"{% endif %}>{{ childLink.title | escape }}</a>
-          
-          {% if childlink.links != blank %}
-            Test
-            <ul>
-            {% for grandchildlink in childlink.links %}
-              <li class="">
-                <a href="{{ grandchildlink.url }}"
-                class=""
-                {% if grandchildlink.current %} aria-current="page"{% endif %}>
-                  <span class="">{{ grandchildlink.title | escape }}</span>
+    <ul class="main-nav__list-sub-nav sub-nav-list {% if child_link.links != blank %}sub-nav-list--has-children{% endif %}">
+      <button class="sub-nav-list__back">{% render 'icon-arrow-left' %}</button>
+      {% for child_link in link.links %}
+        <li class="sub-nav-list__item {% if child_link.active %}sub-nav-list__item--active{% endif %}">
+          <a href="{{ child_link.url }}" class="sub-nav-list__link" {% if child_link.current %} aria-current="page"{% endif %}>{{ child_link.title | escape }}</a>
+          {% if child_link.links != blank %}
+            <ul class="sub-nav-list__grand-child-list grand-child-list">
+            {% for grandchild_link in child_link.links %}
+              <li class="grand-child-list__item">
+                <a href="{{ grandchild_link.url }}" class="grand-child-list__link"
+                {% if grandchild_link.current %} aria-current="page"{% endif %}>
+                  {{ grandchild_link.title | escape }}
                 </a>
               </li>
             {% endfor %}
             </ul>
           {% endif %}
-
         </li>
       {% endfor %}
     </ul>
