@@ -8,7 +8,7 @@
 4. Run `npm install` to install all dependencies
 5. Commit and push everything
 6. Duplicate `.config.sample.yml` to create `.config.yml`
-7. Create a private app for deployment. Add this settings to your `.config.yml`
+7. Create a private app for deployment. Add this settings to your `.config.yml` - [Ref](https://shopify.dev/tools/theme-kit/getting-started#step-2-generate-api-credentials)
 8. Add your config
 
 ## Workflow
