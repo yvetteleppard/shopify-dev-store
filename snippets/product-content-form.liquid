@@ -25,7 +25,7 @@
   <select class="{% if product.has_only_default_variant or product.variants.size == 1 %}hide{% endif %}" name="id">
     {% for variant in product.variants %}
       <option
-        {% if variant == current_variant %}selected="selected"{% endif %}
+        {% if variant == currentVariant %}selected="selected"{% endif %}
         {% unless variant.available %}disabled="disabled"{% endunless %}
         value="{{ variant.id }}">
           {{ variant.title }} {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
@@ -52,20 +52,20 @@
     </div>
   </div>
 
-  {% render 'product-price', variant: current_variant, show_vendor: section.settings.show_vendor %}
+  {% render 'product-price', variant: currentVariant, show_vendor: section.settings.show_vendor %}
 
  <div data-price-wrapper class="product-form__price product-price">
     <meta itemprop="priceCurrency" content="{{ shop.currency }}">
-    <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+    <meta itemprop="price" content="{{ currentVariant.price | divided_by: 100.00 }}">
     <span data-product-price>
-      {{ current_variant.price | money }}
+      {{ currentVariant.price | money }}
     </span>
 
     {% if product.compare_at_price_max > product.price %}
       <span class="screenreader-text" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
       <s data-compare-price>
-        {% if current_variant.compare_at_price > current_variant.price %}
-          {{ current_variant.compare_at_price | money }}
+        {% if currentVariant.compare_at_price > currentVariant.price %}
+          {{ currentVariant.compare_at_price | money }}
         {% endif %}
       </s>
     {% endif %}
@@ -76,9 +76,9 @@
     name="add"
     class="button"
     data-submit-button
-    {% unless current_variant.available %}disabled="disabled" aria-disabled="true"{% endunless %}>
+    {% unless currentVariant.available %}disabled="disabled" aria-disabled="true"{% endunless %}>
       <span data-submit-button-text>
-        {% if current_variant.available %}
+        {% if currentVariant.available %}
           {{ 'products.product.add_to_cart' | t }}
         {% else %}
           {{ 'products.product.sold_out' | t }}

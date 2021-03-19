@@ -1,6 +1,6 @@
 <div class="product__content product-content" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
-  <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
+  <link itemprop="availability" href="http://schema.org/{% if currentVariant.available %}InStock{% else %}OutOfStock{% endif %}">
 
   <h1 class="product-content__title">{{product.title}}</h1>
   <span class="product-content__vendor">{{product.vendor}}</span>
@@ -18,7 +18,7 @@
     </div>
   {%- endif -%} -->
 
-  {% render 'product-content-form', product: product %}
+  {% render 'product-content-form', product: product, currentVariant: currentVariant %}
 
   {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
 
