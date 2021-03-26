@@ -2,32 +2,40 @@
   <div class="product-slideshow-container__slideshow product-slideshow">
     <div class="slideshow">
       {% if product.images.size >= 1 %}
-      <div class="slideshow__slides">
-        {% for image in product.images %}
-          <div class="slideshow__slide" data-slide="{{forloop.index}}">
-            {% render 'image-component' with
-              image: image,
-              sizes: '(min-width: 63.75em) 50vw, 100vw'
-            %}
-          </div>
-        {% endfor %}
-      </div>
+        <div class="slideshow__slides">
+          {% for image in product.images %}
+            <div class="slideshow__slide" data-slide="{{forloop.index}}">
+              {% render 'image-component' with
+                image: image,
+                sizes: '(min-width: 63.75em) 50vw, 100vw',
+                classes: 'objFit'
+              %}
+            </div>
+          {% endfor %}
+        </div>
       {% else %}
-      <div class="slideshow__empty">
-        <span>
-          {{'product.slideshow.no_images' | t }}
-        </span>
-      </div>
+        <div class="slideshow__empty">
+          <span>
+            {{'products.slideshow.no_images' | t }}
+          </span>
+        </div>
       {% endif %}
+      <button type="button" class="slideshow__button slideshow__button--prev {% unless product.images.size > 1 %} hide{% endunless %}">
+        <span class="screenreader-text">{{ 'general.accessibility.previous_slide' | t }}</span>
+      </button>
+      <button type="button" class="slideshow__button slideshow__button--next {% unless product.images.size > 1 %} hide{% endunless %}">
+        <span class="screenreader-text">{{ 'general.accessibility.next_slide' | t }}</span>
+      </button>
     </div>
   </div>
   <div
     class="product-slideshow-container__thumbnails product-thumbnails{% if product.images.size < 2 %} hide{% endif %}">
     {% for image in product.images %}
-      <button data-slide="{{forloop.index}}">
+      <button class="product-thumbnails__item" data-slide="{{forloop.index}}">
         {% render 'image-component' with
           image: image,
-          sizes: '(min-width: 63.75em) 10vw, 25vw'
+          sizes: '2.75em',
+          classes: 'objFit'
         %}
       </button>
     {% endfor %}

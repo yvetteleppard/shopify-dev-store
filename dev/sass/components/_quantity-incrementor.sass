@@ -1,50 +1,55 @@
-// .quantity-incrementor
-//   display: flex
-//   align-items: center
-//   margin: 0
+.quantity-incrementor
+  display: flex
+  align-items: center
+  margin: 0
 
-//   &__label
-//     @extend .screenreader-text
-//     margin: 0
+  &__label
+    margin: 0 .5em 0 0
+    font-weight: 500
 
-//   &__minus, &__plus
-//     +opacityHover
-//     width: $minTouchSize
-//     height: $minTouchSize
-//     display: flex
-//     align-items: center
-//     justify-content: center
-//     background: transparent
+  &__input
+    width: $minTouchSize
+    height: $minTouchSize
+    padding: 0
+    text-align: center
+    appearance: none
+    -moz-appearance: textfield
+    border-radius: 100%
 
-//     &::after
-//       content: ''
-//       display: block
-//       width: 10px
-//       height: 2px
-//       background: $firstColour
+    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
+      -webkit-appearance: none
+      margin: 0
 
-//   &__plus
-//     position: relative
+  &__minus, &__plus
+    @extend %buttonBasics
+    +opacityHover
+    width: $minTouchSize
+    height: $minTouchSize
+    display: flex
+    align-items: center
+    justify-content: center
+    background: transparent
 
-//     &::before
-//       content: ''
-//       display: block
-//       width: 2px
-//       height: 10px
-//       background: $firstColour
-//       position: absolute
-//       top: 50%
-//       left: 50%
-//       transform: translate(-50%, -50%)
+    &::after
+      content: ''
+      display: block
+      width: .625rem
+      height: .125rem
+      background: $black
 
-//   &__input
-//     width: $minTouchSize
-//     height: 2em
-//     padding: 0
-//     text-align: center
-//     appearance: none
-//     -moz-appearance: textfield
+  &__plus
+    position: relative
 
-//     &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
-//       -webkit-appearance: none
-//       margin: 0
+    &::before
+      content: ''
+      display: block
+      width: .125rem
+      height: .625rem
+      background: $black
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+
+
+

@@ -6,7 +6,9 @@
       "back_to_top": "Back to top",
       "close_promo_bar": "Close promotional banner",
       "unit_price_separator": "per",
-      "error": "Error"
+      "error": "Error",
+      "previous_slide": "Previous slide",
+      "next_slide": "Next slide"
     },
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",
@@ -107,11 +109,13 @@
       "unavailable": "Unavailable",
       "unit_price_label": "Unit price",
       "include_taxes": "Tax included.",
-      "shipping_policy_html":
-      "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
     },
     "recommendations": {
       "title": "You may also like"
+    },
+    "slideshow": {
+      "no_images": "No images found"
     }
   },
   "contact": {

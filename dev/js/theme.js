@@ -6,6 +6,8 @@ import VideoLazyLoader from './components/video-lazy-loader'
 import Animator from './components/animator'
 import GiftCard from './components/gift-card'
 import ProductRecommendations from './components/product-recommendations'
+import Product from './components/product'
+import QuantityIncrementor from './components/quantity-incrementor'
 
 class Theme {
 
@@ -34,6 +36,8 @@ class Theme {
     this.components.animator = new Animator('.animate-on-scroll')
     this.components.giftCard = new GiftCard()
     this.components.productRecommendations = new ProductRecommendations()
+    this.components.product = new Product()
+    this.components.quantityIncrementor = new QuantityIncrementor()
   }
 
 }
