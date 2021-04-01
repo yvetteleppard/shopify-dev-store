@@ -1,4 +1,6 @@
-<h1>{{ '404.title' | t }}</h1>
-<p>{{ '404.subtext' | t }}</p>
-{%- assign buttonText = '404.home' | t -%}
-{% render 'button', url: routes.root_url, text: buttonText %}
+<section class="error">
+  <h1 class="error__title">{{ '404.title' | t }}</h1>
+  <h4 class="error__subtext">{{ '404.subtext' | t }}</h4>
+  {%- assign buttonText = '404.home' | t -%}
+  {% render 'button', classes: 'error__button', url: routes.root_url, text: buttonText, style: 'tertiary' %}
+</section>
