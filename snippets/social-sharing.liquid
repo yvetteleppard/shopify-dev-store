@@ -1,7 +1,33 @@
-<div class="social-sharing">
-  <h4 class="social-sharing__title">{{ 'general.social.share' | t }}</h4>
+{% if classes == blank %}
+  {% assign classes = '' %}
+{% endif %}
+
+<div class="social-sharing {{ classes | join: ' ' }}">
+  <h5 class="social-sharing__title">{{ 'general.social.share' | t }}</h5>
 
   <ul class="social-sharing__list">
+
+    {% if settings.share_pinterest %}
+      <li class="social-sharing__list-item">
+        <a class="social-sharing__list-link" target="_blank" rel="noopener"
+            href="//pinterest.com/pin/create/button/?url={{ shop.url | append: share_permalink }}&amp;media={{ share_image | img_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}"
+            title="{{ 'general.social.share_via_pinterest' | t }}">
+          {% render 'icon-pinterest' %}
+          <span class="screenreader-text">{{ 'general.social.share_via_pinterest' | t }}</span>
+        </a>
+      </li>
+    {% endif %}
+
+    {% if settings.share_twitter %}
+      <li class="social-sharing__list-item">
+        <a class="social-sharing__list-link" target="_blank" rel="noopener"
+            href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ shop.url | append: share_permalink }}"
+            title="{{ 'general.social.share_on_twitter' | t }}">
+            {% render 'icon-twitter' %}
+            <span class="screenreader-text">{{ 'general.social.share_on_twitter' | t }}</span>
+        </a>
+      </li>
+    {% endif %}
 
     {% if settings.share_facebook %}
       <li class="social-sharing__list-item">
@@ -14,20 +40,9 @@
       </li>
     {% endif %}
 
-    {% if settings.share_twitter %}
-      <li class="social-sharing__list-item">
-        <a class="social-sharing__link" target="_blank" rel="noopener"
-            href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ shop.url | append: share_permalink }}"
-            title="{{ 'general.social.share_on_twitter' | t }}">
-            {% render 'icon-twitter' %}
-            <span class="screenreader-text">{{ 'general.social.share_on_twitter' | t }}</span>
-        </a>
-      </li>
-    {% endif %}
-
     {% if settings.share_email %}
       <li class="social-sharing__list-item">
-        <a  class="social-sharing__link" target="_blank" rel="noopener"
+        <a  class="social-sharing__list-link" target="_blank" rel="noopener"
             href="mailto:?to=&subject={{ share_title | url_param_escape }}&body={{ shop.url | append: share_permalink }}"
             title="{{ 'general.social.share_via_email' | t }}">
             {% render 'icon-email' %}
@@ -36,15 +51,5 @@
       </li>
     {% endif %}
 
-    {% if settings.share_pinterest %}
-      <li class="social-sharing__list-item">
-        <a class="social-sharing__link" target="_blank" rel="noopener"
-            href="//pinterest.com/pin/create/button/?url={{ shop.url | append: share_permalink }}&amp;media={{ share_image | img_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}"
-            title="{{ 'general.social.share_via_pinterest' | t }}">
-          {% render 'icon-pinterest' %}
-          <span class="screenreader-text">{{ 'general.social.share_via_pinterest' | t }}</span>
-        </a>
-      </li>
-    {% endif %}
   </ul>
 </div>
