@@ -1,0 +1,65 @@
+.product
+  @include spacer('padding-bottom')
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+  align-items: flex-start
+  @media (min-width: $smallDesktop)
+    flex-wrap: nowrap
+
+  &__content,
+  &__slideshow-container
+    @include spacer('margin-bottom')
+    position: relative
+    flex-basis: 100%
+
+  &__content
+    @media (min-width: $smallDesktop)
+      flex-basis: calc(40% + #{$gutterDesktop})
+
+  &__slideshow-container
+    @media (min-width: $smallDesktop)
+      flex-basis: calc(60% - #{$gutterDesktop})
+
+.product-slideshow
+  position: relative
+  z-index: 5 !important
+
+  .slideshow
+    overflow: hidden
+
+    &__slides
+      align-items: stretch
+      display: flex
+      flex-wrap: nowrap
+      transition: transform $transitionDurationLong cubic-bezier(0.3, 0, 0.3, 1)
+      width: 100%
+      @media (prefers-reduced-motion: reduce)
+        transition: none !important
+
+    &__slide
+      flex: 0 0 100%
+      width: 100%
+      height: 0
+      overflow: hidden
+      position: relative
+      padding-bottom: 100%
+
+      figure
+        @extend .objFit
+        +cover
+
+      img
+        width: 100%
+
+.product-thumbnails
+  overflow: hidden
+  position: relative
+  justify-content: center
+  display: flex
+  flex-wrap: wrap
+  transition: transform $transitionDurationLong cubic-bezier(0.3, 0, 0.3, 1)
+  width: 100%
+  z-index: 6
+  @media (prefers-reduced-motion: reduce)
+    transition: none !important
