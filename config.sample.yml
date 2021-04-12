@@ -1,13 +1,7 @@
 development:
   password:
   theme_id:
-  store: superrb-theme.myshopify.com
-  ignores:
-   - themekit_ignores # A file to load ignore patterns
-
-production:
-  password:
-  theme_id:
-  store: superrb-theme.myshopify.com
+  store: lovebug-uk.myshopify.com
+  url: www.lovebugpetfood.com
   ignores:
    - themekit_ignores # A file to load ignore patterns

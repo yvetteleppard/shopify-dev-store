@@ -119,11 +119,11 @@ gulp.task('browsersync', (done) => {
   browsersync.init({
     injectChanges: true,
     port: '3000', ui: { port: '3000' + 1 },
-    proxy: 'https://' + themeConfig.development.store,
+    proxy: 'https://' + themeConfig.development.url,
     notify: true,
     startPath: "/?preview_theme_id=" + themeConfig.development.theme_id,
     files: './theme_ready',
-    reloadDelay: 500, // Sometimes browsersync is marginally too quick for Shopify
+    reloadDelay: 1000, // Sometimes browsersync is marginally too quick for Shopify
     snippetOptions: {
       blacklist: ['/preview_bar'],
       rule: {
