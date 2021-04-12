@@ -1,4 +1,8 @@
-<section class="section pagination">
+{% if classes == blank %}
+  {% assign classes = '' %}
+{% endif %}
+
+<section class="pagination {{ classes | join: ' ' }}">
   <span class="prev {% if paginate.previous == blank %}disabled{% endif %}">
     {% if paginate.previous %}
       <a href="{{ paginate.previous.url }}">

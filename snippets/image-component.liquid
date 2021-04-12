@@ -1,3 +1,7 @@
+{% if classes == blank %}
+  {% assign classes = '' %}
+{% endif %}
+
 {% if sizes == blank %}
   {% assign sizes = '100vw' %}
 {% endif %}
@@ -45,8 +49,9 @@
   {% endcapture %}
 {% endif %}
 
-<figure class="{{ classes }}">
+<figure class="image {{ classes | join: ' ' }}">
   <img {{ sources }}
+      class="image__img"
       sizes="{{ sizes }}"
       alt="{{ image.alt | escape }}"
       crossorigin />
