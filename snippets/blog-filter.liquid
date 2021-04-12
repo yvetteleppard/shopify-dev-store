@@ -1,5 +1,5 @@
 {% if blog.tags.size > 0 %}
-  <section class="section blog-filter">
+  <section class="blog-filter">
     <ul class="blog-filter__list">
      <li class="blog-filter__list-item "><a href="{{ blog.url }}">{{ 'blog.filter.all' | t }}</a></li>
       {% for tag in blog.all_tags %}
