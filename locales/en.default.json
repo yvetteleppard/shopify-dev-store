@@ -135,19 +135,19 @@
       "submit": "Send",
       "error_heading": "There are errors with this form",
       "name": {
-        "label" : "Name",
+        "label": "Name",
         "placeholder": "Enter your name"
       },
       "email": {
-        "label" : "Email",
+        "label": "Email address*",
         "placeholder": "Enter your email address"
       },
       "phone": {
-        "label" : "Phone number",
+        "label": "Phone number",
         "placeholder": "Enter your phone number"
       },
       "message": {
-        "label" : "Message",
+        "label": "Message or Enquiry",
         "placeholder": "Start typing your message here"
       }
     }
