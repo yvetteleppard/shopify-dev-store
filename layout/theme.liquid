@@ -47,7 +47,7 @@
   {% render 'google-analytics' %}
 
 </head>
-<body id="{{ page_title | handle }}" class="template-{{ request.page_type | handle }}">
+<body id="{{ page_title | handle }}" class="template-{{ request.page_type | handle }} template-{{ template.name | handle }} template-{{ template.suffix | handle }}">
 
   <nav id="skip-to">
     <a href="#main-content">{{ 'general.accessibility.skip_to_content' | t }}</a>
