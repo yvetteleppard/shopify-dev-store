@@ -3,6 +3,7 @@
 {% endif %}
 
 <div class="article-tags {{ classes | join: ' ' }}">
+  {% for tag in tags %}
     <a class="article-tags__tag" href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
   {% endfor %}
 </div>
