@@ -4,20 +4,17 @@
   {% render 'form-status', form: form, form_id: formId %}
 
   <div class="form__row form-row">
-    <label for="{{ formId }}_name">{{ 'contact.form.name.label' | t }}</label>
     <input type="text"
       name="contact[name]"
       id="{{ formId }}_name"
-      placeholder="{{ 'contact.form.name.placeholder' | t }}"
       value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+    <label for="{{ formId }}_name">{{ 'contact.form.name.label' | t }}</label>
   </div>
 
   <div class="form__row form-row {% if form.errors contains 'email' %} form-row--error{% endif %}">
-    <label for="{{ formId }}_email">{{ 'contact.form.email.label' | t }}</label>
     <input type="email"
       name="contact[email]"
       id="{{ formId }}_email"
-      placeholder="{{ 'contact.form.email.placeholder' | t }}"
       value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
       spellcheck="false"
       autocomplete="off"
@@ -27,34 +24,33 @@
         aria-invalid="true"
         aria-describedby="{{ formId }}-email-error"
         data-error="{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}."
-      {%- endif -%}
-      >
+      {%- endif -%}>
+    <label for="{{ formId }}_email">{{ 'contact.form.email.label' | t }}</label>
   </div>
 
   <div class="form__row form-row">
-    <label for="{{ formId }}_phone">{{ 'contact.form.phone.label' | t }}</label>
     <input type="tel"
       name="contact[phone]"
       id="{{ formId }}_phone"
       pattern="[0-9\-]*"
-      placeholder="{{ 'contact.form.phone.placeholder' | t }}"
       value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+    <label for="{{ formId }}_phone">{{ 'contact.form.phone.label' | t }}</label>
   </div>
 
   <div class="form__row form-row">
-    <label for="{{ formId }}_message">{{ 'contact.form.message.label' | t }}</label>
     <textarea rows="10"
       name="contact[body]"
-      id="{{ formId }}_message"
-      placeholder="{{ 'contact.form.message.placeholder' | t }}">
+      id="{{ formId }}_message">
       {%- if form.body -%}
         {{- form.body -}}
       {%- endif -%}
     </textarea>
+    <label for="{{ formId }}_message">{{ 'contact.form.message.label' | t }}</label>
   </div>
 
   <div class="form__row form-row form-row--submit">
-    <button type="submit" class="button button--dark">{{ 'contact.form.submit' | t }}</button>
+    {% capture buttonText %}{{ 'contact.form.submit' | t }}{% endcapture %}
+    {% render 'button', type: 'submit', style: 'tertiary', text: buttonText %}
   </div>
 
 {% endform %}
