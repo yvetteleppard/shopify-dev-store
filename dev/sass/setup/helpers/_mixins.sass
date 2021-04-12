@@ -30,24 +30,34 @@
   top: $padding
 
 =gutterLeft
-  +clamp('padding-left', $gutterMobile, $gutterDesktop, $largeMobile, $smallDesktop)
+  +clamp('padding-left', $gutterMobile, $gutterDesktop, $largeMobile, $desktop)
 
 =gutterRight
-  +clamp('padding-right', $gutterMobile, $gutterDesktop, $largeMobile, $smallDesktop)
+  +clamp('padding-right', $gutterMobile, $gutterDesktop, $largeMobile, $desktop)
 
 =gutters
   +gutterLeft
   +gutterRight
 
 =spacingTop
-  +clamp('padding-top', $spacerMobile, $spacerDesktop, $largeMobile, $smallDesktop)
+  +clamp('padding-top', $spacerMobile, $spacerDesktop, $largeMobile, $desktop)
 
 =spacingBottom
-  +clamp('padding-bottom', $spacerMobile, $spacerDesktop, $largeMobile, $smallDesktop)
+  +clamp('padding-bottom', $spacerMobile, $spacerDesktop, $largeMobile, $desktop)
+
+=spacingTopHalf
+  +clamp('padding-top', $spacerMobile, ($spacerDesktop * .5), $largeMobile, $desktop)
+
+=spacingBottomHalf
+  +clamp('padding-bottom', $spacerMobile, ($spacerDesktop * .5), $largeMobile, $desktop)
 
 =spacing
   +spacingTop
   +spacingBottom
+
+=spacingHalf
+  +spacingTopHalf
+  +spacingBottomHalf
 
 =opacityHover
   transition: opacity $transitionDuration $transitionTimingFunction
