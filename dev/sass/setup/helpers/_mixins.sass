@@ -71,3 +71,47 @@
   width: 100%
   margin-left: auto
   margin-right: auto
+
+%narrowSection
+  max-width: $narrowWidth
+  margin: 0 auto
+
+%buttonBasics
+  appearance: none
+  background: none
+  border-radius: 0
+  border: 0
+  box-shadow: none
+  cursor: pointer
+  display: inline-block
+  font-family: inherit
+  font-size: inherit
+  font-style: inherit
+  font-weight: inherit
+  letter-spacing: inherit
+  line-height: inherit
+  margin: 0
+  overflow: hidden
+  padding: 0
+  position: relative
+  text-align: center
+  text-decoration: none
+  user-select: none
+  vertical-align: middle
+  white-space: normal
+  width: auto
+
+%notification
+  border: solid .125rem
+  border-radius: .25rem
+  padding: 1em 1.125em
+
+  &--error
+    color: $error
+    border-color: $error
+    background-color: rgba($error, .15)
+
+  &--success
+    color: $success
+    border-color: $success
+    background-color: rgba($success, .15)

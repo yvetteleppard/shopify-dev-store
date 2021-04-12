@@ -2,7 +2,7 @@
 
 {% render 'page-title', title: page_title %}
 
-<section class="section dashboard">
+<section class="dashboard">
   {% paginate customer.orders by 20 %}
     <div class="dashboard__orders orders">
       <header class="orders__header orders-header">
@@ -25,7 +25,7 @@
               <td data-label="{{ 'customer.account.orders.order_number' | t }}">
                 <a href="{{ order.customer_url }}" aria-label="{{ 'customer.account.orders.order_number_link' | t: number: order.name }}">{{ order.name }}</a>
               </td>
-              <td data-label="{{ 'customer.account.orders.date' | t }}">{{ order.created_at | time_tag: format: 'date' }}</td>
+              <td data-label="{{ 'customer.account.orders.date' | t }}">{{ order.created_at | time_tag: '%d/%m/%Y' }}</td>
               <td data-label="{{ 'customer.account.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
               <td data-label="{{ 'customer.account.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
               <td data-label="{{ 'customer.account.orders.total' | t }}">{{ order.total_price | money }}</td>
@@ -41,13 +41,15 @@
       {%- endif -%}
     </div>
   {% endpaginate %}
-  <div class="dashboard__dashboard-addresses dashboard-addresses">
+  <div class="dashboard__addresses dashboard-addresses">
     <h4 class="">{{ 'customer.account.details' | t }}</h4>
 
     {{ customer.default_address | format_address }}
 
-    <p><a href="{{ routes.account_addresses_url }}">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+    <p>
+      {% capture linkText %}{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }}){% endcapture %}
+      {% render 'text-link', url: routes.account_addresses_url, text: linkText %}
+    </p>
 
   </div>
-
 </section>

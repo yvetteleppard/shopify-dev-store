@@ -1,0 +1,47 @@
+.account-sub-nav
+  background: $black
+  color: $white
+  position: sticky
+  z-index: 40
+
+  &::after
+    content: ''
+    +cover
+    left: auto
+    width: 3em
+    background-image: linear-gradient(to right, rgba($black, 0) 0%, $black 100%)
+
+  &__list
+    +gutters
+    padding-top: 1.75em
+    padding-bottom: 1.75em
+    list-style: none
+    margin: 0
+    white-space: nowrap
+    overflow: auto
+
+    &-item
+      margin: 0 .75em
+      display: inline-block
+
+      &:first-of-type
+        +gutterLeft
+
+      &:last-of-type
+        padding-right: 3em
+
+    &-link
+      +opacityHover
+      font-weight: 700
+      display: flex
+      align-items: center
+
+      &--active
+        &::before
+          content: ''
+          display: inline-block
+          width: .625rem
+          height: .625rem
+          background: $white
+          border-radius: 100%
+          margin: 0 .375em 0 0

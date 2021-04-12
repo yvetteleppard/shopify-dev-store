@@ -1,0 +1,21 @@
+.dashboard
+  +gutters
+  +spacingHalf
+  display: flex
+  flex-wrap: wrap
+
+  @media (min-width: $smallDesktop)
+    flex-wrap: nowrap
+
+  &__orders
+    flex: 1 1 100%
+    margin: 0 0 3em
+
+    @media (min-width: $smallDesktop)
+      margin: 0 6.375em 0 0
+
+  &__addresses
+    flex: 0 0 15.625em
+
+    @media (min-width: $smallDesktop)
+      margin-top: 5.6em

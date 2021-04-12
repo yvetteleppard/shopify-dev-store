@@ -1,0 +1,225 @@
+.mini-cart
+  z-index: 80
+  +cover
+  position: fixed
+  pointer-events: none
+  background: transparent
+  transition: background .7s cubic-bezier(.694,0,.335,1), opacity 0s .7s
+
+  &--active
+    pointer-events: all
+    background: rgba($black, .5)
+    transition: background .7s cubic-bezier(.694,0,.335,1), opacity 0s 0s
+
+  &__inner
+    background: $white
+    width: 95vw
+    height: 100%
+    margin: 0 0 0 auto
+    display: flex
+    flex-direction: column
+    transform: translateX(101%)
+    transition: transform .7s cubic-bezier(.694,0,.335,1)
+
+    @media (min-width: $tablet)
+      width: 32.5em
+
+    .mini-cart--active &
+      transform: translateX(0)
+
+  &__header, &__items, &__footer
+    padding-left: 2em
+    padding-right: 2em
+
+  &__header
+    // background: $eggShell
+    display: flex
+    align-items: center
+    justify-content: center
+    padding-top: 2.5em
+    padding-bottom: 2.5em
+    position: relative
+
+    &-close
+      @extend %buttonBasics
+      width: $minTouchSize
+      height: $minTouchSize
+      display: flex
+      justify-content: center
+      align-items: center
+      position: absolute
+      top: 50%
+      left: 1.75em
+      transform: translateY(-50%)
+      +opacityHover
+
+      svg
+        width: 1.5625em
+        height: auto
+        display: block
+        // fill: $black
+
+    &-title
+      margin: 0
+
+  &__error
+    @extend %notification
+    @extend %notification--error
+    margin: 1.5em 2em -1em
+    text-align: center
+    display: none
+
+    &--active
+      display: block
+
+  &__items
+    padding: 2.5em 2em
+    overflow: auto
+
+    .mini-cart--empty &
+      display: none
+
+  &__empty
+    padding: 2.5em 2em
+    display: none
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    text-align: center
+    margin: auto 0
+
+    .mini-cart--empty &
+      display: flex
+
+  &__footer
+    margin: auto 0 0 0
+    padding-bottom: 1.75em
+    display: block
+
+    &-message, &-buttons
+      .mini-cart--empty &
+        display: none
+
+    &-message
+      padding: 1.125em
+      margin: 0 0 1em
+      border-radius: 0.25em
+
+      svg
+        width: 1em
+        height: auto
+        animation: rotate-360 10s linear infinite
+        margin: 0 .5em 0 0
+
+        path
+          // fill: $orange
+
+    &-buttons
+      display: flex
+      flex-direction: column
+      align-items: center
+
+      .button
+        margin: 0 0 1em
+        width: 100%
+
+      .text-link
+        margin: 0 0 1.5em
+
+    &-usp
+      text-align: center
+      margin: 0 0 1em
+
+    &-taxes
+      font-size: 0.8125em
+      text-align: center
+
+      a
+        +opacityHover
+        text-decoration: underline
+
+.mini-cart-items
+  &__item
+    border-bottom: 0.125rem solid $black
+    padding-bottom: 1.5em
+    margin-bottom: 1.5em
+
+    &:last-of-type
+      border-bottom: 0
+      padding-bottom: 0
+
+.mini-cart-item
+  display: flex
+
+  &__image
+    flex: 0 0 6.25em
+
+    &-wrap
+      width: 100%
+      height: 0
+      position: relative
+      overflow: hidden
+      padding-bottom: 125%
+
+    &-img
+      +cover
+      width: 100%
+      height: 100%
+
+  &__info
+    flex: 1 1 auto
+    padding: 1em 0 1em 1.375em
+    position: relative
+
+    &-title
+      display: block
+      font-weight: 700
+      margin: 0 0 .5em
+
+    &-price
+      text-align: right
+
+    &-quantity
+      margin: 0 0 0 -.875em
+
+    &-clear
+      position: absolute
+      top: 0
+      right: 0
+      width: $minTouchSize
+      height: $minTouchSize
+
+      &--delete
+        img
+          display: block !important
+
+      &-icon
+        width: 100%
+        height: 100%
+        position: relative
+        transform: rotate(45deg)
+
+        .mini-cart-item__info-clear--delete &
+          display: none
+
+        &::before, &::after
+          content: ''
+          position: absolute
+          top: 50%
+          left: 50%
+          width: .75em
+          height: .125rem
+          transform: translate(-50%, -50%)
+          background: $black
+
+        &::after
+          transform: translate(-50%, -50%) rotate(90deg)
+
+      img
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        width: .875em
+        height: auto
+        display: none

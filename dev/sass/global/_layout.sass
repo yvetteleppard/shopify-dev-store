@@ -13,3 +13,56 @@ body
 #preview-bar-iframe
   display: none !important
 
+
+%table
+  border-collapse: collapse
+  width: 100%
+  text-align: left
+  border-bottom: .125rem solid $black
+
+  @media (min-width: $tablet)
+    border-bottom: 0
+
+  @media (min-width: $smallDesktop)
+    margin-bottom: 0
+
+  td, th
+    padding: .5em 0
+    font-size: inherit
+
+    @media (min-width: $tablet)
+      padding: 1em .5em
+      border-bottom: .125rem solid $black
+
+    @media (max-width: $maxTablet)
+      border: none
+      border-top: none
+
+    &:first-child
+      padding-left: 0
+
+      @media (min-width: $tablet)
+        text-align: left
+
+    a
+      font-weight: 700
+      +opacityHover
+      text-decoration: underline
+
+  th
+    display: none
+    line-height: inherit
+    margin-bottom: 0
+    font-size: 1em
+    font-weight: 700
+
+    @media (min-width: $tablet)
+      display: table-cell
+
+  td
+    vertical-align: middle
+
+  dl
+    a
+      +opacityHover
+      text-decoration: underline

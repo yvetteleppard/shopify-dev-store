@@ -1,3 +1,14 @@
+a,
+area,
+button,
+[role='button'],
+input,
+label,
+select,
+summary,
+textarea
+  touch-action: manipulation
+
 input,
 textarea,
 select
@@ -5,124 +16,235 @@ select
   font-size: 1em
   line-height: inherit
   font-family: inherit
-  border: .0625em solid $black
-  border-radius: 0
+  border: .125em solid $black
+  border-radius: 0.25em
   max-width: 100%
   width: 100%
-  background-color: transparent
-  padding: .5em 1em
+  background-color: $white
+  padding: 1.25em 1.125em 0.75em
+  transition: box-shadow .3s ease, border-color .3s ease
+  box-shadow: 0 0 0 0 $black
+  font-weight: 500
+
+  .form-row--error &
+    border-color: $error
+    box-shadow: 0 0 0 0 $error
+
+  &:hover, &:focus
+    outline: 0
+    box-shadow: 0 0 0 .0625em $black
+
+    .form-row--error &
+      box-shadow: 0 0 0 .0625em $error
+
+  &[disabled]
+    background-color: rgba($black, .1)
+    cursor: default
+
+    &:hover
+      box-shadow: none
+
+input[type="checkbox"],
+input[type="radio"]
+  transition: opacity $transitionDuration ease
+  opacity: 1
+  width: 1em // 16px
+  height: 1em // 16px
+  appearance: none
+  border: .125em solid $black
+  padding: 0
+  margin: .125em 1em 0 0
+  cursor: pointer
+  background-image: linear-gradient($black, $black)
+  background-size: 0% 0%
+  background-position: center
+  background-repeat: no-repeat
+
+  &:hover
+    opacity: $opacityHover
+
+  &:checked
+    background-size: 70% 70%
+
+input[type="radio"]
+  border-radius: 100%
+  background-image: radial-gradient(circle, $black 70%, white 70%)
 
 button,
 input[type='submit'],
 label[for]
   cursor: pointer
 
-select::-ms-expand
-  display: none
+select
+  background-repeat: no-repeat
+  background-image: url("data:image/svg+xml,%3Csvg width='13' height='7' viewBox='0 0 13 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 1C9.56207 1.77313 7.5798 3.61775 6.57158 6H6.42842C5.4202 3.61775 3.43817 1.77313 1 1' stroke='%232E2828' stroke-width='2'/%3E%3C/svg%3E%0A")
+  background-size: .875em auto
+  background-position: right 1em center
+  padding: 1em 1.125em
+  cursor: pointer
 
-// // Default styles from Shopifys starter theme - modified
+  &::-ms-expand
+    display: none
 
-// a,
-// area,
-// button,
-// [role='button'],
-// input,
-// label,
-// select,
-// summary,
-// textarea
-//   touch-action: manipulation
+label
+  .form-row--error &
+    color: $error
 
-// input,
-// textarea,
-// select
+textarea
+  min-height: 3.75em
 
-//   &[disabled]
-//     background-color: $thirdColour
-//     cursor: default
+.form
+  background: $white
+  padding: 2em 1.25em
+  border-radius: .5em
 
-//   &:hover, &:focus
-//     border-color: rgba($firstColour, $opacityHover)
+  @media (min-width: $tablet)
+    padding: 3.25em
 
-// textarea
-//   min-height: 60px
+  &--transparent
+    background: transparent
+    padding-left: 0
+    padding-right: 0
 
+  &__header
+    margin: 0 0 1.5em
 
+  &__message
+    margin: 0 0 1em
 
-// // Force option color (affects IE only)
-// option
-//   background-color: $firstColour
-//   color: $secondColour
+  &__row
+    margin: 0 0 1em
 
-// label
-//   display: block
-//   margin: 0 0 .5em
+    &:last-of-type
+      margin: 0
 
-// .input-error
-//   border-color: $error
+  &__info
+    margin: 2em 0 0
 
-// .form-container
-//   display: flex
-//   flex-direction: column
-//   &__header
-//     text-align: left
-//     margin-bottom: 2.25em
-//     width: 100%
-//   p
-//     &:last-of-type
-//       margin: 0
+.form-header
+  text-align: center
 
-// .form
-//   &__notify
-//     background: $firstColour
-//     color: $secondColour
-//     padding: .5em 1.5em
-//     text-align: center
-//     margin: 0 auto 2.25em
-//     &--success
-//       background: $success
-//     &--error
-//       background: $error
-//     ul
-//       list-style: none
-//       margin: 0
-//       padding: 0
+  &--left
+    text-align: left
 
-// .form-row
-//   margin: 0 auto 2.25em
-//   &__checkbox-container
-//     display: flex
-//     justify-content: flex-start
-//   &--submit
-//     display: flex
-//     justify-content: space-between
-//     flex-wrap: wrap
-//     .text-link
-//       padding: 1em 0
+  &__logo
+    display: flex
+    justify-content: center
+    margin: 0 0 3em
 
-// input[type="checkbox"],
-// input[type="radio"]
-//   transition: background $transitionDuration ease, opacity $transitionDuration ease
-//   opacity: 1
-//   width: 1.25em // 20px
-//   height: 1.25em // 20px
-//   appearance: none
-//   border: 1px solid $firstColour
-//   padding: 0
-//   margin: 2px 1em 0 0
-//   cursor: pointer
-//   background-image: linear-gradient($firstColour, $firstColour)
-//   background-size: 0% 0%
-//   background-position: center
-//   background-repeat: no-repeat
+    svg
+      width: 13.4375em
+      height: auto
 
-//   &:hover
-//     opacity: $opacityHover
+  &__title
+    @extend %h3
+    font-size: between(1.25em, 1.75em, $largeMobile, $desktop) // 20px ~ 28px
 
-//   &:checked
-//     background-size: 70% 70%
+.form-message
+  @extend %notification
 
-// input[type="radio"]
-//   border-radius: 100%
-//   background-image: radial-gradient(circle, $firstColour 70%, white 70%)
+  &--error
+    @extend %notification--error
 
+  &--success
+    @extend %notification--success
+
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+
+.form-row
+  position: relative
+
+  input
+    &:focus, &.field--filled
+      + label
+        top: .25rem
+        font-size: .75em
+
+    &[type='radio']
+      &:focus, &.field--filled
+        + label
+          font-size: 1em
+
+  label
+    position: absolute
+    top: 1.125rem
+    left: 1.25rem
+    font-weight: 500
+    transition: font-size .3s ease, top .3s ease
+    pointer-events: none
+    cursor: text
+
+  &--submit
+    .button
+      width: 100%
+      margin: 0 0 1em
+
+      &:last-of-type
+        margin: 0
+
+  &--search
+    position: relative
+
+    input
+      padding-left: 3.5em
+
+    label
+      left: 3.5rem
+
+    .button
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 1em
+      background: transparent
+      border: 0
+      display: flex
+      align-items: center
+      justify-content: center
+      padding: 0
+      width: $minTouchSize
+      height: 100%
+      min-width: 0
+
+      &:hover
+        background: transparent
+        border: 0
+
+      svg
+        fill: $black
+
+  &--select
+    label
+      top: -9999px
+      left: -9999px
+
+  &--checkbox, &--radio
+    display: flex
+    align-items: flex-start
+
+    input
+      &:focus, &.field--filled
+        + label
+          font-size: 1em
+
+    label
+      position: static
+      pointer-events: all
+      cursor: pointer
+
+.form-info
+  display: flex
+  flex-direction: column
+  align-items: center
+
+  .text-link
+    margin: 0 0 1em
+
+    &:last-of-type
+      margin: 0
+
+  &--left
+    align-items: flex-start

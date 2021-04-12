@@ -1,21 +1,23 @@
-{% render 'breadcrumbs' %}
+<section class="account-blocks account-blocks--split" id="CustomerLoginForm">
 
-{% render 'page-title', title: page_title %}
+  <div class="account-blocks__message hide" id="ResetSuccess">
+    <div class="form-message form-message--success">
+      {{ 'customer.login.recover_password.success' | t }}
+    </div>
+  </div>
 
-
-<div class="form-message form-message--success" id="ResetSuccess" tabindex="-1">
-  {{ 'customer.login.recover_password.success' | t }}
-</div>
-
-<section class="section info info--split" id="CustomerLoginForm">
-  <div class="info__block info-block">
+  <div class="account-blocks__block">
     {% render 'customer-login-form' %}
   </div>
-  <div class="info__block info-block rte">
-    <h2 >{{ 'customer.login.create_account.title' | t }}</h2>
-    <p>{{ 'customer.login.create_account.text' | t }}</p>
+
+  <div class="account-blocks__block account-block-info">
+    <h4 class="account-block-info__title">{{ 'customer.login.create_account.title' | t }}</h4>
+    <p class="account-block-info__intro">{{ 'customer.login.create_account.text' | t }}</p>
+    <ul class="account-block-info__list">
+      {{ 'customer.login.create_account.benefits_html' | t }}
+    </ul>
     {%- capture buttonText -%}{{ 'customer.login.create_account.button_text' | t }}{%- endcapture -%}
-    {% render 'button', url: routes.account_register_url, text: buttonText %}
+    {% render 'button', url: routes.account_register_url, text: buttonText, style: 'secondary' %}
     {%- comment -%}
       {% if shop.checkout.guest_login %}
         <h2>{{ 'customer.login.guest_title' | t }}</h2>
@@ -28,9 +30,8 @@
   </div>
 </section>
 
-<section class="info" id="RecoverPasswordForm">
-  <div class="info__block info-block form-container">
+<section class="account-blocks hide" id="RecoverPasswordForm">
+  <div class="account-blocks__block">
     {% render 'customer-recover-password-form' %}
   </div>
 </section>
-

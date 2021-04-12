@@ -1,7 +1,7 @@
 {% form 'activate_customer_password', class: 'form' %}
 
   <header class="form__header form-header">
-    <h2 class="form-header__title">{{ 'customer.activate_account.title' | t }}</h2>
+    <h1 class="form-header__title">{{ 'customer.activate_account.title' | t }}</h1>
     <p class="form-header__intro">{{ 'customer.activate_account.intro' | t }}</p>
   </header>
 
@@ -12,34 +12,31 @@
   {% endif %}
 
   <div class="form__row form-row">
-    <label for="CustomerPassword">
-      {{ 'customer.activate_account.password.label' | t }}
-    </label>
     <input type="password"
       name="customer[password]"
       id="CustomerPassword"
-      value=""
-      placeholder="{{ 'customer.activate_account.password.placeholder' | t }}">
+      value="">
+    <label for="CustomerPassword">
+      {{ 'customer.activate_account.password.label' | t }}
+    </label>
   </div>
 
   <div class="form__row form-row">
-    <label for="CustomerPasswordConfirmation">
-      {{ 'customer.activate_account.password_confirm.label' | t }}
-    </label>
     <input type="password"
       name="customer[password_confirmation]"
       id="CustomerPasswordConfirmation"
-      value=""
-      placeholder="{{ 'customer.activate_account.password_confirm.placeholder' | t }}">
+      value="">
+    <label for="CustomerPasswordConfirmation">
+      {{ 'customer.activate_account.password_confirm.label' | t }}
+    </label>
   </div>
-
 
   <div class="form__row form-row form-row--submit">
     {%- capture buttonText -%}{{ 'customer.activate_account.submit' | t }}{%- endcapture -%}
-    {% render 'button', type: 'submit', text: buttonText %}
+    {% render 'button', type: 'submit', text: buttonText, style: 'tertiary' %}
 
     {%- capture buttonText -%}{{ 'customer.activate_account.cancel' | t }}{%- endcapture -%}
-    {% render 'button', type: 'submit', text: buttonText, name: 'decline' %}
+    {% render 'button', type: 'submit', text: buttonText, name: 'decline', style: 'secondary' %}
   </div>
 
 {% endform %}

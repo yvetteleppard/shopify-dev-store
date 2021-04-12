@@ -1,0 +1,21 @@
+{% assign element = 'a' %}
+
+{% if url == blank %}
+  {% assign element = 'button' %}
+{% endif %}
+
+{% if classes == blank %}
+  {% assign classes = '' %}
+{% endif %}
+
+<{{element}}
+{% if url != blank %}href="{{ url }}"{% endif %}
+class="text-link {{ classes | join: ' ' }}"
+{% if title %}title="{{ title }}"{% endif %}
+{% if id %}id="{{ id }}"{% endif %}
+{% if type %}type="{{ type }}"{% endif %}
+{% if external %}target="_blank" rel="noopener"{% endif %}
+{% if role %}role="{{ role }}"{% endif %}
+{{attributes}}>
+  <span class="text-link__label">{{ text }}</span>
+</{{element}}>

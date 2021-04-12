@@ -1,31 +1,54 @@
-// .section.addresses
-//   @extend %cappedWidth
-//   @extend %gutters
-//   .address
-//     &__container
-//       @include spacer('margin-bottom')
-//       +clamp('padding', $gutterMobile, $gutterDesktop, $largeMobile, $largeDesktop)
-//       max-width: $narrowWidth / 1.5
-//       background-color: $thirdColour
-//       display: block
-//       margin: auto
+.addresses, .new-address
+  +spacingHalf
+  @extend %narrowSection
 
-//     &__buttons
-//       form
-//         display: inline-block
-//         margin-left: 1em
+  &__inner
+    +gutters
 
-// .new-address
-//   @extend %cappedWidth
-//   @extend %gutters
-//   margin-left: auto
-//   margin-right: auto
+.addresses
 
-//   &__button
-//     @include spacer('margin-bottom')
-//     display: block
-//     margin: auto
+  &__address
+    border-bottom: 0.125rem solid $black
+    padding-bottom: 2.5em
+    margin-bottom: 2.5em
 
-//   &__form
-//     max-width: $narrowWidth
-//     margin: auto
+    &:last-of-type
+      margin-bottom: 0
+
+  .address
+    &__container
+      display: block
+      margin: auto
+
+    &__edit
+      margin-top: 2.5em
+      border-top: 0.125rem solid $black
+
+      .form
+        padding-top: 2.5em
+        padding-bottom: 0
+
+    &__buttons
+      form
+        display: inline-block
+        margin-left: 1em
+
+.new-address
+  padding-top: 0
+
+  &__inner
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+  &__form
+    width: 100%
+
+.new-address-form
+  .form
+    width: 100%
+
+.address
+  &__content
+    line-height: 2em

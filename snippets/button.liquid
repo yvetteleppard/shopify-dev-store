@@ -22,7 +22,8 @@ class="button button--{{ style }} {{ classes | join: ' ' }}"
 {% if type %}type="{{ type }}"{% endif %}
 {% if name %}name="{{ name }}"{% endif %}
 {% if role %}role="{{ role }}"{% endif %}
-{% if label_a11y %}aria-label="{{ label_a11y }}"{% endif %}>
+{% if label_a11y %}aria-label="{{ label_a11y }}"{% endif %}
+{{attributes}}>
   {% if icon %}
     {{ icon  }}
   {% endif %}

@@ -1,0 +1,67 @@
+.orders-table
+  +gutters
+  @extend %cappedWidth
+  @extend %table
+
+  td, th
+    &:last-child
+      @media (min-width: $tablet)
+        width: 20%
+
+    &:first-child
+      @media (min-width: $tablet)
+        text-align: left
+
+.order
+  +gutters
+  +spacingTopHalf
+  +spacingBottom
+
+  &__header, &__info, &__table, &__total
+    @extend %narrowSection
+
+  &__header
+    margin: 0 auto 3em
+
+  &__info
+    margin: 0 auto 2em
+
+  .order-info
+    display: flex
+    flex-wrap: wrap
+
+    @media (min-width: $tablet)
+      flex-wrap: nowrap
+
+    &__item
+      flex: 0 0 100%
+      margin: 0 0 1.5em
+
+      &:last-of-type
+        margin: 0
+
+      @media (min-width: $tablet)
+        flex: 0 0 50%
+        margin: 0
+
+      p
+        &:last-of-type
+          margin: 0
+
+  .order-total
+    &__table
+      margin-bottom: 1em
+
+      @media (min-width: $tablet)
+        width: 100%
+
+      tr
+        &:last-child
+          th, td
+            font-weight: $secondFontWeight
+
+        th, td
+          &:last-child
+            width: 20%
+          // border-bottom: none
+

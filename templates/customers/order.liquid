@@ -1,16 +1,14 @@
 {% render 'account-sub-nav' %}
 
-{% render 'page-title', title: page_title %}
+{% capture subtitle %}{{ 'customer.order.date_html' | t: date: order.created_at | date: "%B %d, %Y - %I:%M%p" }}{% endcapture %}
+
+{% render 'page-title', title: page_title, subtitle: subtitle %}
 
 <section class="order">
   <header class="order__header">
-    <h2>{{ 'customer.order.title' | t: name: order.name }}</h2>
-    {%- assign order_date = order.created_at | time_tag: format: "date_at_time" -%}
-    <p>{{ 'customer.order.date_html' | t: date: order_date }}</p>
 
-    <h3 class="">
-      {{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y - %I:%M%p" }}
-    </h3>
+    <p><strong>{{ 'customer.order.fulfillment_status' | t }}:</strong> {{ order.fulfillment_status_label }}</p>
+    <p><strong>{{ 'customer.order.payment_status' | t }}:</strong> {{ order.financial_status_label }}</p>
 
     {%- if order.cancelled -%}
       <div class="order--cancelled">
@@ -22,17 +20,17 @@
   </header>
 
   <div class="order__info order-info">
-    <h3>{{ 'customer.order.billing_address' | t }}</h3>
+    <div class="order-info__item">
+      <h5>{{ 'customer.order.billing_address' | t }}</h5>
 
-    <p><strong>{{ 'customer.order.payment_status' | t }}:</strong> {{ order.financial_status_label }}</p>
+      {{ order.billing_address | format_address }}
+    </div>
 
-    {{ order.billing_address | format_address }}
+    <div class="order-info__item">
+      <h5>{{ 'customer.order.shipping_address' | t }}</h5>
 
-    <h3>{{ 'customer.order.shipping_address' | t }}</h3>
-
-    <p><strong>{{ 'customer.order.fulfillment_status' | t }}:</strong> {{ order.fulfillment_status_label }}</p>
-
-    {{ order.shipping_address | format_address }}
+      {{ order.shipping_address | format_address }}
+    </div>
   </div>
 
   <div class="order__details">

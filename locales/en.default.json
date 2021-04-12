@@ -225,10 +225,11 @@
   },
   "customer": {
     "account": {
-      "details": "Your Details",
-      "view_addresses": "View / Add Address",
+      "details": "Account details",
+      "view_addresses": "View addresses",
       "breadcrumb": "My Account",
       "dashboard": "Dashboard",
+      "subscriptions": "Subscriptions",
       "log_out": "Logout",
       "orders": {
         "title": "Order History",
@@ -257,7 +258,7 @@
       }
     },
     "addresses": {
-      "default": "Default",
+      "default": "Main address (default)",
       "set_default": "Set as default address",
       "add": "Add Address",
       "update": "Update Address",
@@ -304,8 +305,8 @@
         "placeholder": "Enter your Province"
       },
       "zip": {
-        "label": "Post / Zip Code",
-        "placeholder": "Enter your Post / Zip Code"
+        "label": "Post \/ Zip Code",
+        "placeholder": "Enter your Post \/ Zip Code"
       },
       "phone": {
         "label": "Phone*",
@@ -314,7 +315,7 @@
     },
     "login": {
       "title": "Welcome back!",
-      "intro" : "Please login to your account",
+      "intro": "Please login to your account",
       "forgot_password": "Forgot password?",
       "sign_in": "Login to account",
       "guest_title": "Continue as a guest",
@@ -323,12 +324,13 @@
         "title": "New customer? Create an account",
         "intro": "Please click the button below to start the process of registering",
         "text": "Create an account for faster checkouts, order history and information about new products and special offers",
-        "button_text": "Get Started",
-        "sign_up_html": "Don't have an account? <a href=\"{{ link }}\">Sign up</a>"
+        "button_text": "Sign up now",
+        "sign_up": "Don't have an account? Sign up",
+        "benefits_html": "<li>Track your orders<\/li><li>Save address and payment info<\/li> <li>Access exclusive offers<\/li>"
       },
       "form": {
         "email": {
-          "label" : "Email",
+          "label": "Email",
           "placeholder": "Enter your email address"
         },
         "password": {
@@ -352,7 +354,7 @@
     },
     "order": {
       "title": "Order {{ name }}",
-      "date": "Placed on {{ date }}",
+      "date_html": "Placed on {{ date }}",
       "track": "Track order",
       "cancelled_html": "Order Cancelled on {{ date }}",
       "cancelled_reason": "Reason: {{ reason }}",
@@ -377,10 +379,10 @@
     },
     "register": {
       "title": "Create Account",
-      "intro": "Sign up and get shopping",
+      "intro": "Members can enjoy free shipping and returns with no minimum, and a world of perks.",
       "submit": "Create Account",
       "cancel": "Return to Store",
-      "login_html": "Already have an account? <a href=\"{{ link }}\">Login</a>",
+      "login": "Already have an account? Login",
       "form": {
         "first_name": {
           "label": "First name",

@@ -1,6 +1,4 @@
-{%- assign formId = 'RegisterForm' -%}
-
-{% form 'create_customer',  id: formId, class: 'form', novalidate: 'novalidate' %}
+{% form 'create_customer', class: 'form', novalidate: 'novalidate' %}
   <header class="form__header form-header">
     <h3 class="form-header__title">{{ 'customer.register.title' | t }}</h3>
     <p class="form-header__intro">{{ 'customer.register.intro' | t }}</p>
@@ -9,39 +7,33 @@
   {% render 'form-status', form: form, form_id: formId %}
 
   <div class="form__row form-row">
-    <label for="{{ formId }}_first_name">
-      {{ 'customer.register.form.first_name.label' | t }}
-    </label>
     <input type="text"
     name="customer[first_name]"
     id="{{ formId }}_first_name"
-    placeholder="{{ 'customer.register.form.first_name.placeholder' | t }}"
     {% if form.first_name %}value="{{ form.first_name }}"{% endif %}
     autocomplete="given-name"
     autofocus>
+    <label for="{{ formId }}_first_name">
+      {{ 'customer.register.form.first_name.label' | t }}
+    </label>
   </div>
 
   <div class="form__row form-row">
-    <label for="{{ formId }}_last_name">
-      {{ 'customer.register.form.last_name.label' | t }}
-    </label>
     <input type="text"
       name="customer[last_name]"
       id="{{ formId }}_last_name"
-      placeholder="{{ 'customer.register.form.last_name.placeholder' | t }}"
       {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
       autocomplete="family-name">
+    <label for="{{ formId }}_last_name">
+      {{ 'customer.register.form.last_name.label' | t }}
+    </label>
   </div>
 
   <div class="form__row form-row {% if form.errors contains 'email' %} form-row--error{% endif %}">
-    <label for="{{ formId }}_email">
-      {{ 'customer.register.form.email.label' | t }}
-    </label>
     <input type="email"
       name="customer[email]"
       id="{{ formId }}_email"
       class="{% if form.errors contains 'email' %}input-error{% endif %}"
-      placeholder="{{ 'customer.register.form.email.placeholder' | t }}"
       {% if form.email %} value="{{ form.email }}"{% endif %}
       spellcheck="false"
       autocomplete="off"
@@ -52,33 +44,36 @@
         aria-invalid="true"
         aria-describedby="{{ formId }}-email-error"
       {%- endif -%}>
+    <label for="{{ formId }}_email">
+      {{ 'customer.register.form.email.label' | t }}
+    </label>
   </div>
 
   <div class="form__row form-row {% if form.errors contains 'password' %}form-row--error{% endif %}">
-    <label for="{{ formId }}_password">
-      {{ 'customer.register.form.password.label' | t }}
-    </label>
     <input type="password"
       name="customer[password]"
       id="{{ formId }}_password"
-      placeholder="{{ 'customer.register.form.password.placeholder' | t }}"
       aria-required="true"
       {%- if form.errors contains 'password' -%}
         aria-invalid="true"
         aria-describedby="{{ formId }}_password_error"
       {%- endif -%}>
+    <label for="{{ formId }}_password">
+      {{ 'customer.register.form.password.label' | t }}
+    </label>
   </div>
-
 
   <div class="form__row form-row form-row--submit">
     {%- capture buttonText -%}{{ 'customer.register.submit' | t }}{%- endcapture -%}
-    {% render 'button', type: 'submit', text: buttonText %}
+    {% render 'button', type: 'submit', text: buttonText, style: 'tertiary' %}
   </div>
 
   <div class="form__info form-info">
-    <a href="{{ shop.url }}" >{{ 'customer.register.cancel' | t }}</a>
-    {%- capture link -%}{{ routes.account_login_url }}{%- endcapture -%}
-    <p>{{ 'customer.register.login_html' | t: link: link }}</p>
+    {% assign textLinkText = 'customer.register.cancel' | t %}
+    {% render 'text-link', url: shop.url, text: textLinkText %}
+
+    {% assign textLinkText = 'customer.register.login' | t %}
+    {% render 'text-link', url: routes.account_login_url, text: textLinkText %}
   </div>
 
 {% endform %}

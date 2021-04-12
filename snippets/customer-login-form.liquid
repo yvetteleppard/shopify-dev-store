@@ -1,8 +1,8 @@
 {% form 'customer_login', class: 'form',  novalidate: 'novalidate' %}
 
-  <header class="form__header form-header">
+  <header class="form__header form-header form-header--left">
     <h2 class="form-header__title">{{ 'customer.login.title' | t }}</h2>
-    <p class="form-header__title">{{ 'customer.login.intro' | t }}</p>
+    <p class="form-header__intro">{{ 'customer.login.intro' | t }}</p>
   </header>
 
   {% if form.errors != blank %}
@@ -12,14 +12,10 @@
   {% endif %}
 
   <div class="form__row form-row {% if form.errors contains 'email' %} input-error{% endif %}">
-    <label for="CustomerEmail">
-      {{ 'customer.login.form.email.label' | t }}
-    </label>
     <input  type="email"
             name="customer[email]"
             id="CustomerEmail"
             class=""
-            placeholder="{{ 'customer.login.form.email.placeholder' | t }}"
             spellcheck="false"
             {%- if form.errors contains 'form' -%}
               aria-invalid="true"
@@ -28,34 +24,37 @@
             autocorrect="off"
             autocapitalize="off"
             autofocus>
+    <label for="CustomerEmail">
+      {{ 'customer.login.form.email.label' | t }}
+    </label>
   </div>
 
   {% if form.password_needed %}
     <div class="form__row form-row {% if form.errors contains 'password' %} form-row-error{% endif %}">
-      <label for="CustomerPassword">
-        {{ 'customer.login.form.password.label' | t }}
-      </label>
       <input type="password"
       name="customer[password]"
       id="CustomerPassword"
       {%- if form.errors contains 'form' -%}
         aria-invalid="true"
-      {%- endif -%}
-      placeholder="{{ 'customer.login.form.password.placeholder' | t }}"/>
+      {%- endif -%}/>
+      <label for="CustomerPassword">
+        {{ 'customer.login.form.password.label' | t }}
+      </label>
     </div>
   {% endif %}
 
   <div class="form__row form-row form-row--submit">
     {%- capture buttonText -%}{{ 'customer.login.sign_in' | t }}{%- endcapture -%}
-    {% render 'button', type: 'submit', text: buttonText %}
+    {% render 'button', type: 'submit', text: buttonText, style: 'tertiary' %}
   </div>
 
   <div class="form__info form-info">
     {% if form.password_needed %}
-      <a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a>
+      {% assign textLinkText = 'customer.login.forgot_password' | t %}
+      {% render 'text-link', url: '#recover', id: 'RecoverPassword', text: textLinkText %}
     {% endif %}
-    {%- capture link -%}{{ routes.account_register_url }}{%- endcapture -%}
-    <p>{{ 'customer.login.create_account.sign_up_html' | t: link: link }}</p>
+    {% assign textLinkText = 'customer.login.create_account.sign_up' | t %}
+    {% render 'text-link', url: routes.account_register_url, text: textLinkText %}
   </div>
 
 {% endform %}
