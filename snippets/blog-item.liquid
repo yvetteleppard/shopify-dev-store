@@ -1,4 +1,8 @@
-<article class="blog-item">
+{% if classes == blank %}
+  {% assign classes = '' %}
+{% endif %}
+
+<article class="blog-item {{ classes | join: ' ' }}">
   <a href="{{ article.url }}" title="{{ article.title }}" class="blog-item__link">
 
     {% render 'image-component' with
