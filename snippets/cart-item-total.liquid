@@ -14,10 +14,6 @@
   </dd>
 </dl >
 
-
-{{ 'cart.label.regular_total' | t }}
-{{ 'cart.label.discounted_total' | t }}
-
 <!-- Markup template for regular price item -->
 <div {% if item.original_line_price != item.final_line_price %}class="hide" {% endif %}data-cart-item-regular-price-group>
   <span data-cart-item-regular-price>{{ item.original_line_price | money }}</span>

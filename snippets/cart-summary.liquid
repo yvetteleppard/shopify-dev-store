@@ -21,7 +21,7 @@
         <div class="order-discount-card-wrapper" data-cart-discount>
           {%- for discount_application in cartDiscounts -%}
             <span class="order-discount order-discount--title order-discount--cart">
-              <span class="visually-hidden">{{ 'customer.order.discount' | t }}:</span><span data-cart-discount-title>{{- discount_application.title -}}</span>
+              <span class="screenreader-text">{{ 'customer.order.discount' | t }}:</span><span data-cart-discount-title>{{- discount_application.title -}}</span>
             </span>
             <span class="order-discount order-discount--cart order-discount--cart-total">
               -<span data-cart-discount-amount>{{ discount_application.total_allocated_amount | money }}</span>
@@ -44,10 +44,10 @@
     <div class="cart-summary__shipping">{{ taxes_shipping_checkout }}</div>
     <div class="cart-summary__buttons">
       {%- capture buttonText -%}{{ 'cart.general.update' | t }}{%- endcapture -%}
-      {% render 'button', type: 'submit', name: 'update', text: buttonText %}
+      {% render 'button', type: 'submit', name: 'update', style: 'secondary', text: buttonText %}
 
       {%- capture buttonText -%}{{ 'cart.general.checkout' | t }}{%- endcapture -%}
-      {% render 'button', type: 'submit', name: 'checkout', text: buttonText %}
+      {% render 'button', type: 'submit', name: 'checkout', style: 'tertiary', text: buttonText %}
 
       {% if additional_checkout_buttons %}
         <div class="additional-checkout-buttons">
@@ -56,10 +56,9 @@
         </div>
       {% endif %}
     </div>
-
-  </div>
-  <div class="cart-summary__discounts">
-    <h4 class="cart-summary__discounts-title">{{ 'cart.general.discounts.title' | t }}</h4>
-    <p class="cart-summary__discounts-message">{{ 'cart.general.discounts.message' | t }}</p>
+    <div class="cart-summary__discounts">
+      <h5 class="cart-summary__discounts-title">{{ 'cart.general.discounts.title' | t }}</h5>
+      <p class="cart-summary__discounts-message">{{ 'cart.general.discounts.message' | t }}</p>
+    </div>
   </div>
 </div>

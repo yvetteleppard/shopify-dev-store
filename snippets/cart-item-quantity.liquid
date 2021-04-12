@@ -1,0 +1,14 @@
+{% if classes == blank %}
+  {% assign classes = '' %}
+{% endif %}
+
+<div class="quantity-incrementor {{ classes | join: ' ' }}" {% if index != blank  %}data-index="{{index}}"{% endif %} {% if item.variant_id != blank  %}data-variant-id="{{item.variant_id}}"{% endif %}>
+  <label for="Quantity" class="quantity-incrementor__label screenreader-text">{{ 'products.product.quantity' | t }}:</label>
+  <button class="quantity-incrementor__minus" type="button"><span class="screenreader-text">{{ 'general.accessibility.incrementor.minus' | t }}</span></button>
+  {% if productQuantity %}
+    <input class="quantity-incrementor__input" type="number" id="Quantity" name="quantity" value="1" min="1">
+  {% else %}
+    <input class="quantity-incrementor__input" type="number" id="updates_{{ item.key }}" name="updates[]" value="{{ item.quantity }}" min="1" max="999" aria-label="{{ 'cart.general.item_quantity' | t }}">  
+  {% endif %}
+  <button class="quantity-incrementor__plus" type="button"><span class="screenreader-text">{{ 'general.accessibility.incrementor.plus' | t }}</span></button>
+</div>

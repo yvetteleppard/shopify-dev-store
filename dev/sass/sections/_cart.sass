@@ -1,113 +1,97 @@
-// .cart
-//   @extend %cappedWidth
-//   @extend %gutters
-//   @include spacer('margin-bottom')
-//   position: relative
+.cart
+  +gutters
+  +spacingTopHalf
+  +spacingBottom
 
-//   &__empty
-//     @include spacer('margin-bottom')
-//     text-align: center
+  &__error
+    @extend %notification
+    @extend %notification--error
+    display: none
 
-//     &-title
-//       margin-bottom: .5em
+    &--active
+      display: inline-block
 
-//     a
-//       @extend %textLink
+  &__empty
+    +spacingTopHalf
+    text-align: center
 
-//   p
-//     margin-bottom: 0
+.cart-form
+  display: flex
+  align-items: flex-start
+  justify-content: center
+  flex-wrap: wrap
 
-// .cart-form
-//   display: flex
-//   align-items: flex-start
-//   justify-content: center
-//   flex-wrap: wrap
-//   @media (min-width: $smallDesktop)
-//     flex-wrap: nowrap
-//     justify-content: flex-end
-//   @media (max-width: $maxSmallDesktop)
-//     padding-bottom: 3em
+  @media (min-width: $smallDesktop)
+    flex-wrap: nowrap
+    justify-content: flex-end
 
-//   &__column
-//     &--left
-//       @include spacer('margin-bottom')
-//       flex: 0 0 100%
-//       @media (min-width: $smallDesktop)
-//         flex: 1 1 100%
-//     &--right
-//       flex: 0 0 100%
-//       @media (min-width: $tablet)
-//         flex: 0 0 32em
-//       @media (min-width: $smallDesktop)
-//         flex: 0 0 20em
-//         margin-left: 1.5em
-//       @media (min-width: $largeDesktop)
-//         flex: 0 0 24em
+  &__column
+    flex: 0 0 100%
 
-//   &__back
-//     @extend %gutters
-//     @include spacer('margin-bottom')
-//     +clamp('margin-top', $spacerMobile / 2, $spacerDesktop / 2, $largeMobile, $smallDesktop)
-//     display: block
-//     @media (min-width: $smallDesktop)
-//       padding: 0
-//     @media (max-width: $maxSmallDesktop)
-//       position: absolute
-//       bottom: 0
-//       left: 0
-//       right: 0
-//       margin: auto
-//       text-align: center
+    &--left
+      margin: 0 0 3em
 
-// .cart-table
-//   border-collapse: collapse
-//   background: $thirdColour
-//   width: 100%
-//   @media (min-width: $tablet)
-//     padding: 0
-//     width: 100%
+      @media (min-width: $smallDesktop)
+        flex: 1 1 100%
 
-//   .quantity-incrementor
-//     justify-content: flex-end
-//     @media (min-width: $tablet)
-//       justify-content: center
+    &--right
+      @media (min-width: $tablet)
+        flex: 0 0 24em
 
-//   th, td
-//     &:first-of-type
-//       padding-left: $cartTablePadding
+      @media (min-width: $smallDesktop)
+        flex: 0 0 20em
+        +clamp('flex-basis', 20em, 24em, $smallDesktop, $desktop)
+        margin-left: 2.5em
 
-//     &:last-of-type
-//       padding-right: $cartTablePadding
+  &__table
+    margin: 0 0 2em
 
-//   th
-//     padding: .5em 0
-//     font-weight: $secondFontWeight
+  &__back
+    +opacityHover
+    display: flex
+    align-items: center
+    font-weight: 700
 
-//     &:first-of-type
-//       text-align: left
+    svg
+      width: 1em
+      height: auto
+      margin: 0 .5em 0 0
 
-//   td
-//     padding: .5em $cartTablePadding
-//     vertical-align: middle
-//     @media (min-width: $tablet)
-//       text-align: center
-//       padding: 1em 0 1em 0
+.cart-table
+  @extend %table
+  border-collapse: collapse
+  width: 100%
 
-//     &:nth-of-type(1)
-//       width: 20%
-//       max-width: 120px
-//       overflow: hidden
-//       @media (max-width: $maxTablet)
-//         padding-right: 0
+  @media (min-width: $tablet)
+    padding: 0
+    width: 100%
 
-//     &:nth-of-type(1), &:nth-of-type(2)
-//       text-align: left
-//       @media (max-width: $maxTablet)
-//         display: inline-block
+  .quantity-incrementor
+    justify-content: flex-end
+    @media (min-width: $tablet)
+      justify-content: center
 
-//     &:nth-of-type(2)
-//       width: 75%
-//       padding-left: 1em
+  th
+    text-align: center
+
+    &:first-of-type
+      text-align: left
+
+  td
+    padding: 1.5em .5em
+    text-align: center
+
+    &:nth-of-type(1)
+      padding-left: 0
+
+    a
+      text-decoration: none
+
+    &:nth-of-type(1)
+      text-align: left
+
+      @media (max-width: $maxTablet)
+        display: inline-block
 
 //     &:nth-of-type(4)
 //       @media (max-width: $maxTablet)
@@ -118,17 +102,6 @@
 //     &:nth-of-type(3), &:nth-of-type(5)
 //       @media (max-width: $maxTablet)
 //         padding-right: calc(#{$minTouchSize} + #{$cartTablePadding})
-
-//     img
-//       margin: 0
-//       width: 100%
-
-//     input[type="number"]
-//       width: auto
-//       max-width: 50px
-
-//     a
-//       text-decoration: none
 
 //   h5
 //     margin: 1em auto 0 0
@@ -156,84 +129,130 @@
 //     &::after
 //       transform: rotate(135deg)
 
-// .cart-summary
-//   display: flex
-//   flex-direction: column
+.cart-item-product
+  display: flex
 
-//   &__back
-//     @include spacer('left')
-//     display: block
-//     font-weight: 600
-//     padding: 0
-//     color: $firstColour
-//     text-align: center
-//     @media (min-width: $smallDesktop)
-//       position: absolute
-//       bottom: 0
+  &__image
+    display: block
+    width: 6.25em
+    margin: 0 1.5em 0 0
 
-//     a
-//       text-decoration: none
+    &-figure
+      width: 100%
+      height: 0
+      overflow: hidden
+      position: relative
+      padding-bottom: 125%
 
-//       &::before
-//         content: ''
-//         display: inline-block
-//         width: .4em
-//         height: .4em
-//         border: solid $firstColour
-//         border-width: 2px 0 0 2px
-//         transform: rotate(-45deg)
-//         margin: 0 0.5em 0 0
+      img
+        +cover
+        width: 100%
+        height: 100%
 
-//   &__inner
-//     @include spacer('margin-bottom')
-//     padding: 2em
-//     background: $thirdColour
-//     @media (min-width: $smallDesktop)
-//       margin: 0
+  &__info
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: flex-start
 
-//   &__title
-//     margin-bottom: .75em
-//     text-align: center
+    &-title
+      margin: 0 0 .5em
 
-//   &__total
-//     font-size: 1.375em // 22px
-//     display: flex
-//     justify-content: space-between
-//     margin-bottom: .5em
+    &-remove
+      margin: 1.5em 0 0 0
 
-//     &-label
-//       font-weight: $secondFontWeight
+    ul
+      list-style: none
 
-//   &__shipping
-//     text-align: center
-//     margin: 0 0 1em
+    a
+      text-decoration: none
 
-//   &__buttons
-//     .button
-//       margin: 0 0 .75em
-//       width: 100%
+.cart-summary
+  display: flex
+  flex-direction: column
+  background: $white
 
-//       &:last-of-type
-//           margin: 0
+  &__inner
+    padding: 2em 2.625em
 
-//     .additional-checkout-buttons
-//       display: block
-//       margin: .5em 0 0
+  &__title
+    font-size: 1.75em
+    margin-bottom: 1.5em
+    text-align: center
 
-//       #additional-checkout-buttons
-//         display: flex
-//         justify-content: center
-//         flex-wrap: wrap
+  &__total
+    font-size: 1.125em
+    display: flex
+    justify-content: space-between
+    margin-bottom: 1.5em
 
-//         span
-//           flex: 0 0 100%
-//           margin: 0 0 .5em
-//           text-align: center
+    &-label
+      font-weight: 500
 
-//   &__discounts
-//     @include spacer('margin-bottom')
-//     text-align: center
-//     @media (min-width: $smallDesktop)
-//       background-color: $thirdColour
-//       padding: 0 2em 2em 2em
-//       margin-bottom: 0
+  &__shipping
+    font-size: 0.875em
+    text-align: center
+    margin: 0 0 1em
+
+  &__buttons
+    margin: 0 0 1.5em
+    .button
+      margin: 0 0 1em
+      width: 100%
+
+      &:last-of-type
+          margin: 0
+
+    .additional-checkout-buttons
+      display: block
+      margin: .5em 0 0
+
+      #additional-checkout-buttons
+        display: flex
+        justify-content: center
+        align-items: flex-start
+        flex-wrap: wrap
+
+        span
+          flex: 0 0 100%
+          margin: 0 0 .5em
+          text-align: center
+
+  &__discounts
+    text-align: center
+
+    &-title
+      font-size: 1.125em
+
+    &-message
+      font-size: 0.875em
+      margin: 0
+
+.cart-remove
+  display: flex
+  align-items: center
+
+  &__icon
+    width: 0.625em
+    height: 0.625em
+    position: relative
+    margin: 0 .5em 0 0
+
+    &::before, &::after
+      content: ''
+      width: 100%
+      height: 0.125rem
+      display: block
+      background: $black
+      position: absolute
+      top: 50%
+
+    &::before
+      transform: translateY(-50%) rotate(45deg)
+
+    &::after
+      transform: translateY(-50%) rotate(-45deg)
+
+  &__label
+    font-weight: 500
+    font-size: 0.875em

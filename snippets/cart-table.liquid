@@ -10,15 +10,15 @@
     </thead>
     <tbody>
     {% for item in cart.items %}
-      <tr class="responsive-table-row">
+      <tr class="responsive-table-row cart-table__product-row" data-product="{{ item.id }}">
         <td data-label="{{ 'customer.order.product' | t }}">
-          {% render 'cart-item-product', item: item %}
+          {% render 'cart-item-product', item: item , index: forloop.index %}
         </td>
-        <td data-label="{{ 'cart.label.price' | t }}">
+        <td data-label="{{ 'cart.label.p]rice' | t }}">
           {% render 'cart-item-price', item: item %}
         </td>
         <td data-label="{{ 'cart.label.quantity' | t }}">
-          {% render 'quantity-incrementor' %}
+          {% render 'cart-item-quantity', item: item, index: forloop.index %}
         </td>
         <td data-label="{{ 'cart.label.total' | t }}">
           {% render 'cart-item-total', item: item %}

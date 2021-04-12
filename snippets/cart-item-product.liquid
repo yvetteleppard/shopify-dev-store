@@ -1,10 +1,12 @@
 <div class="cart-item-product">
   {% if item.image != blank %}
-    {% render 'image-component' with
-      image: item.image,
-      sizes: '10em',
-      classes: 'cart-item-product__image'
-    %}
+    <a href="{{item.url}}" class="cart-item-product__image">
+      {% render 'image-component' with
+        image: item.image,
+        sizes: '10em',
+        classes: 'cart-item-product__image-figure objFit'
+      %}
+    </a>
   {% endif %}
 
   <div class="cart-item-product__info">
@@ -63,7 +65,5 @@
       {%- endfor -%}
     </ul>
 
-  <p class="cart__remove">
-    <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">{{ 'cart.general.remove' | t }}</a>
-  </p>
+    <a href="/cart/change?line={{ index }}&amp;quantity=0" class="cart-item-product__info-remove cart-remove" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove"><div class="cart-remove__icon"></div><span class="cart-remove__label">{{ 'cart.general.remove' | t }}</span></a>
 </div>
