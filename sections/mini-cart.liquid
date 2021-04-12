@@ -1,38 +1,35 @@
 <section class="mini-cart">
-  <header class="mini-cart__header">
-    <h3 class="mini-cart__header-title">{{ 'mini-cart.title' | t }}</h3>
-    <button class="mini-cart__header-close">
-      <span class="">{{ 'mini-cart.close' | t }}</span>
-    </button>
-  </header>
+  <div class="mini-cart__inner">
+    <header class="mini-cart__header">
+      <button class="mini-cart__header-close">
+        {% render 'icon-arrow' %}
+        <span class="screenreader-text">{{ 'mini-cart.close' | t }}</span>
+      </button>
+      <h4 class="mini-cart__header-title">{{ 'mini-cart.title' | t }}</h4>
+    </header>
 
-  <div class="mini-cart__error"></div>
+    <div class="mini-cart__error"></div>
 
-  <div class="mini-cart__items mini-cart-items">
-    {% if cart.item_count > 0 %}
-      {% for item in cart.items %}
-        {% render 'mini-cart-item', item: item %}
-      {% endfor %}
-    {% else %}
-      <p class="mini-cart-items__empty">{{ 'mini-cart.empty' | t }}</p>
-    {% endif %}
-  </div>
+    <div class="mini-cart__items mini-cart-items"></div>
 
-  <div class="mini-cart__subtotal">
-    {{ 'mini-cart.subtotal' | t }}: <span>{{ cart.total_price | money }}</span>
-  </div>
-
-  <footer class="mini-cart__footer">
-    <div class="mini-cart__footer-message">
-      {{ 'mini-cart.shipping' | t }}
+    <div class="mini-cart__empty">
+      <h4 class="mini-cart__empty-title">{{ 'mini-cart.empty.title' | t }}</h4>
+      <p class="mini-cart__empty-content">{{ 'mini-cart.empty.content' | t }}</p>
+      {% capture buttonText %}{{ 'mini-cart.empty.button_text' | t }}{% endcapture %}
+      {% render 'button', style: 'tertiary', text: buttonText, url: routes.all_products_collection_url %}
     </div>
-    <div class="mini-cart__footer-buttons">
-      <a href="{{ routes.cart_url }}" class="cart-popup__cta-link btn btn--secondary-accent">
-        {{ 'mini-cart.view_cart' | t }}
-      </a>
-      <a href="{{ routes.cart_url }}" class="button button--dark">{{ 'mini-cart.checkout' | t }}</a>
-      {{ content_for_additional_checkout_buttons }}
-    </div>
-  </footer>
 
+    <footer class="mini-cart__footer">
+      <div class="mini-cart__footer-buttons">
+        {%- capture buttonText -%}<span>{{ cart.total_price | money }}</span> - {{ 'mini-cart.checkout' | t }}{%- endcapture -%}
+        {% render 'button', classes: 'mini-cart__footer-checkout', url: '/checkout', text: buttonText, style: 'tertiary' %}
+        {%- capture linkText -%}{{ 'mini-cart.view_cart' | t }}{%- endcapture -%}
+        {% render 'text-link', url: routes.cart_url, text: linkText %}
+        {{ content_for_additional_checkout_buttons }}
+      </div>
+      <div class="mini-cart__footer-taxes">
+        {{ 'mini-cart.taxes_html' | t }}
+      </div>
+    </footer>
+  </div>
 </section>

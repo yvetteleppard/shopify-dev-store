@@ -11,6 +11,7 @@ import Login from './templates/customers/login'
 import Addresses from './templates/customers/addresses'
 import Product from './components/product'
 import QuantityIncrementor from './components/quantity-incrementor'
+import MiniCart from './components/mini-cart'
 
 class Theme {
 
@@ -44,6 +45,8 @@ class Theme {
     this.components.addresses = new Addresses()
     this.components.product = new Product()
     this.components.quantityIncrementor = new QuantityIncrementor()
+    this.components.miniCart = new MiniCart()
+
   }
 
 }

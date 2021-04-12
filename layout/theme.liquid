@@ -28,7 +28,10 @@
       strings: {
         addToCart: {{ 'products.product.add_to_cart' | t | json }},
         soldOut: {{ 'products.product.sold_out' | t | json }},
-        unavailable: {{ 'products.product.unavailable' | t | json }}
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        addingToBasket: {{ 'products.product.adding_to_basket' | t | json }},
+        emptyCart: {{ 'mini-cart.empty' | t | json }},
+        miniCartError: {{ 'mini-cart.error' | t | json }}
       },
       loadingSvgUrl: {{ 'loading-spinner.svg' | asset_url | json }},
       moneyFormat: {{ shop.money_format | json }},

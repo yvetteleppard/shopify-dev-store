@@ -88,13 +88,17 @@
   "mini-cart": {
     "title": "Your cart",
     "close": "Close cart",
-    "empty": "Your cart is currently empty.",
+    "empty": {
+      "title": "Your shopping cart is feeling empty",
+      "content": "We can help out with that.☺︎",
+      "button_text": "Shop now"
+    },
+    "error": "Sorry, it looks like something went wrong.",
     "subtotal": "Subtotal",
     "view_cart": "View Cart",
     "checkout": "Checkout",
-    "shipping": "Shipping and discounts will be applied during checkout",
-    "product_details": "Product details",
-    "quantity": "Qty"
+    "quantity": "Qty",
+    "taxes_html": "Taxes and shipping calculated at checkout. <br> For shipping policy details see <a href=\"\/pages\/shipping\">here<\/a>."
   },
   "products": {
     "product": {
@@ -107,6 +111,7 @@
       "sold_out": "Sold Out",
       "sale_price": "Sale price",
       "unavailable": "Unavailable",
+      "adding_to_basket": "Adding to basket",
       "unit_price_label": "Unit price",
       "include_taxes": "Tax included.",
       "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
