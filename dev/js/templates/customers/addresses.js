@@ -1,5 +1,5 @@
 import { bind } from 'decko'
-import { scrollToPosition } from '../../helpers'
+import { scrollToElement } from '../../helpers'
 import { AddressForm } from '@shopify/theme-addresses'
 
 export default class Addresses {
@@ -38,9 +38,9 @@ export default class Addresses {
             button.addEventListener('click', () => {
                 addressForm.classList.toggle(this.hideClass)
                 if(!addressForm.classList.contains(this.hideClass)){
-                    scrollToPosition((addressForm.offsetTop - 170))
+                    scrollToElement(addressForm, -170)
                 } else {
-                    scrollToPosition((address.offsetTop - 170))
+                    scrollToElement(address, -170)
                 }
             })
         })
