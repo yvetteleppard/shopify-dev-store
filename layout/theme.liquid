@@ -41,6 +41,10 @@
 
   {{ content_for_header }} <!-- Header hook for plugins -->
 
+  <style>
+    {% render 'critical' %}
+  </style>
+
   <link rel="stylesheet" href="{{ 'theme.min.css' | asset_url }}" type="text/css" media="print" onload="this.media='all'">
   <script src="{{ 'theme.min.js' | asset_url }}" defer="defer"></script>
 

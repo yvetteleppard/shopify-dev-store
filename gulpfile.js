@@ -90,6 +90,23 @@ gulp.task('sass', () => {
     .pipe(gulpif(isProd, size({title: 'css'})))
 });
 
+gulp.task('critical', () => {
+  return gulp.src(gulpConfig.sass.critical)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss([flexbugs, cssvariables, autoprefixer(gulpConfig.autoprefixer)]))
+    .pipe(minifyCss())
+    .pipe(rename(function (path) {
+      return {
+        dirname: path.dirname,
+        basename: path.basename,
+        extname: ".liquid"
+      };
+        path.basename += '.liquid'
+    }))
+    .pipe(gulp.dest(gulpConfig.snippets))
+    .pipe(gulpif(isProd, size({title: 'css'})))
+});
+
 gulp.task('js', () => {
   let bundler = browserify(gulpConfig.js.theme)
 
@@ -138,10 +155,10 @@ gulp.task('browsersync', (done) => {
 
 gulp.task('watch', () => {
   gulp.watch(gulpConfig.sass.all, gulp.series('sass'));
+  gulp.watch(gulpConfig.sass.all, gulp.series('critical'));
   gulp.watch(gulpConfig.js.all, gulp.series('js'));
 });
 
-gulp.task('build', gulp.series('sass', 'js'));
+gulp.task('build', gulp.series('critical', 'sass', 'js'));
 
-gulp.task('default', gulp.parallel(gulp.series('sass', 'js'), 'browsersync', 'watch'));
-
+gulp.task('default', gulp.parallel(gulp.series('critical', 'sass', 'js'), 'browsersync', 'watch'));

@@ -13,13 +13,16 @@
 
   "sass": {
     "all": "<=resourcesPath>sass/**/*.s{a,c}ss",
-    "theme": "<=resourcesPath>sass/theme.sass"
+    "theme": "<=resourcesPath>sass/theme.sass",
+    "critical": "<=resourcesPath>sass/critical.sass"
   },
 
   "js": {
     "theme": "<=resourcesPath>js/theme.js",
     "all": "<=resourcesPath>js/**/*.js"
   },
+
+  "snippets": "./snippets/",
 
   "shopifyFiles": "./+(assets|layout|config|snippets|templates|locales)/**",
 
