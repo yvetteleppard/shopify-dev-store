@@ -5,6 +5,7 @@ package-lock.json
 assets/theme.min.css
 assets/theme.min.js
 assets/theme.min.js.map
+snippets/critical.liquid 
 theme_ready
 npm-debug.log
 .env
