@@ -6,7 +6,7 @@
  *
  * @return {bool}
  */
-export function isInViewport (element, offset = { x: 0, y: 0 }) {
+ export function isInViewport (element, offset = { x: 0, y: 0 }) {
   const { top, left, bottom, right, width, height } = element.getBoundingClientRect()
 
   if(width === 0 && height === 0){
@@ -224,3 +224,5 @@ export const isVisible = (element, t, r, b, l, w, h) => {
   }
   return true
 }
+
+export const em = (size) => parseInt(window.getComputedStyle(document.body).fontSize, 10) * size
