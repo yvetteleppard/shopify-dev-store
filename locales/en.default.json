@@ -8,7 +8,11 @@
       "unit_price_separator": "per",
       "error": "Error",
       "previous_slide": "Previous slide",
-      "next_slide": "Next slide"
+      "next_slide": "Next slide",
+      "incrementor": {
+        "minus": "Minus",
+        "plus": "Plus"
+      }
     },
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",
