@@ -4,7 +4,6 @@
   </a>
   {% if link.links != blank %}
     <ul class="main-nav__list-sub-nav sub-nav-list {% if child_link.links != blank %}sub-nav-list--has-children{% endif %}">
-      <button class="sub-nav-list__back">{% render 'icon-arrow-left' %}</button>
       {% for child_link in link.links %}
         <li class="sub-nav-list__item {% if child_link.active %}sub-nav-list__item--active{% endif %}">
           <a href="{{ child_link.url }}" class="sub-nav-list__link" {% if child_link.current %} aria-current="page"{% endif %}>{{ child_link.title | escape }}</a>
