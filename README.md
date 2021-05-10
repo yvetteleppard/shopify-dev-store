@@ -1,5 +1,7 @@
 # Superrb Themekit
 
+You will find everything you need here: https://github.com/superrbstudio/wiki/wiki/Shopify
+
 ## Setup
 
 1. Create new private project on Github in the superrbstudio organisation
