@@ -13,6 +13,8 @@ import Product from './components/product'
 import QuantityIncrementor from './components/quantity-incrementor'
 import MiniCart from './components/mini-cart'
 import ProductSlideshow from './components/product-slideshow'
+import Cart from './components/cart'
+
 
 class Theme {
 
@@ -48,6 +50,7 @@ class Theme {
     this.components.quantityIncrementor = new QuantityIncrementor()
     this.components.miniCart = new MiniCart()
     this.components.productSlideshow = new ProductSlideshow()
+    this.components.cart = new Cart()
 
   }
 
