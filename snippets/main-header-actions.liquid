@@ -2,30 +2,30 @@
   {% assign classes = '' %}
 {% endif %}
 
-<div class="actions {{ classes | join: ' ' }}">
+<div class="main-header-actions {{ classes | join: ' ' }}">
 
-  <a href="/search" class="actions__search">
+  <a href="/search" class="main-header-actions__search">
     {% render 'icon-search' %}
-    <span class="actions__search-label">
+    <span class="main-header-actions__search-label">
       {{ 'layout.search.title' | t }}
     </span>
   </a>
 
   {% if shop.customer_accounts_enabled %}
-    <div class="actions__account">
+    <div class="main-header-actions__account">
       {% if customer %}
-        <a href="{{ routes.account_url }}" class="actions__account-link">
+        <a href="{{ routes.account_url }}" class="main-header-actions__account-link">
       {% else %}
-        <a href="{{ routes.account_login_url }}" class="actions__account-link">
+        <a href="{{ routes.account_login_url }}" class="main-header-actions__account-link">
       {% endif %}
         {{ 'layout.customer.account' | t }}
       </a>
     </div>
   {% endif %}
 
-  <a class="actions__cart {% if cart.item_count > 0 %}actions__cart--active{% endif %}" href="{{ routes.cart_url }}">
-    <span class="actions__cart-label">{{ 'layout.cart.title' | t }}</span>
-    <div class="actions__cart-count" data-cart-count><span>{{ cart.item_count }}</span></div>
+  <a class="main-header-actions__cart {% if cart.item_count > 0 %}main-header-actions__cart--active{% endif %}" href="{{ routes.cart_url }}">
+    <span class="main-header-actions__cart-label">{{ 'layout.cart.title' | t }}</span>
+    <div class="main-header-actions__cart-count" data-cart-count><span>{{ cart.item_count }}</span></div>
   </a>
 
   <button>
