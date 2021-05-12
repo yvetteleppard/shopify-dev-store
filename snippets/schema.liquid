@@ -5,23 +5,51 @@
     "name": "{{ shop.name }}",
     "image": "https:{{ 'logo.svg' | asset_url }}",
     "logo": "https:{{ 'logo.svg' | asset_url }}",
-    "telephone": "{{ settings['company_phone'] }}",
-    "email" : "{{ settings['company_email'] }}",
+    {% if settings['company_phone'] != blank %}
+      "telephone": "{{ settings['company_phone'] }}",
+    {% endif %}
+    {% if settings['company_email'] != blank %}
+      "email" : "{{ settings['company_email'] }}",
+    {% endif %}
     "address": {
+      {% if settings['address_street'] != blank %}
       "streetAddress": "{{ settings['address_street'] }}",
+      {% endif %}
+      {% if settings['address_city'] != blank %}
       "addressLocality": "{{ settings['address_city'] }}",
+      {% endif %}
+      {% if settings['address_county'] != blank %}
       "addressRegion" : "{{ settings['address_county'] }}",
+      {% endif %}
+      {% if settings['address_postcode'] != blank %}
       "postalCode":"{{ settings['address_postcode'] }}",
+      {% endif %}
+      {% if settings['address_country'] != blank %}
       "addressCountry": "{{ settings['address_country'] }}"
+      {% endif %}
     },
     "sameAs": [
+      {% if settings.social_facebook_link != blank %}
         "{{ settings.social_facebook_link }}",
+      {% endif %}
+      {% if settings.social_instagram_link != blank %}
         "{{ settings.social_instagram_link }}",
+      {% endif %}
+      {% if settings.social_twitter_link != blank %}
         "{{ settings.social_twitter_link }}",
+      {% endif %}
+      {% if settings.social_linkedin_link != blank %}
         "{{ settings.social_linkedin_link }}",
+      {% endif %}
+      {% if settings.social_pinterest_link != blank %}
         "{{ settings.social_pinterest_link }}",
+      {% endif %}
+      {% if settings.social_youtube_link != blank %}
         "{{ settings.social_youtube_link }}",
-        "{{ settings.social_vimeo_link }}"
+      {% endif %}
+      {% if settings.social_vimeo_link != blank %}
+        "{{ settings.social_vimeo_link }}",
+      {% endif %}
       ],
     "url": "{{ shop.url }}{{ page.url }}"
   }
