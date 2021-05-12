@@ -190,16 +190,16 @@ textarea
     position: relative
 
     input
-      padding-left: 3.5em
+      padding-left: $minTouchSize
 
     label
-      left: 3.5rem
+      left: 2.75rem
 
     .button
       position: absolute
       top: 0
       bottom: 0
-      left: 1em
+      left: .25em
       background: transparent
       border: 0
       display: flex
@@ -213,6 +213,9 @@ textarea
       &:hover
         background: transparent
         border: 0
+
+      &:focus
+        outline: 0
 
       svg
         fill: $black
