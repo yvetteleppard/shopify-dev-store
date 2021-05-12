@@ -1,0 +1,10 @@
+{% if classes == blank %}
+  {% assign classes = '' %}
+{% endif %}
+
+<div class="currency-switcher {{ classes | join: ' ' }}">
+  <span class="screenreader-text">Currency</span>
+  {% form 'currency' %}
+    {{ form | currency_selector: class: 'my_special_class', id: 'Submit'  }}
+  {% endform %}
+</div>
