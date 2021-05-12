@@ -14,7 +14,7 @@ import QuantityIncrementor from './components/quantity-incrementor'
 import MiniCart from './components/mini-cart'
 import ProductSlideshow from './components/product-slideshow'
 import Cart from './components/cart'
-
+import Instagram from './components/instagram'
 
 class Theme {
 
@@ -51,6 +51,7 @@ class Theme {
     this.components.miniCart = new MiniCart()
     this.components.productSlideshow = new ProductSlideshow()
     this.components.cart = new Cart()
+    this.components.instagram = new Instagram()
 
   }
 

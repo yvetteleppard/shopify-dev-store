@@ -1,0 +1,13 @@
+<section class="instagram">
+  <header class="instagram__header">
+    <a href="{{ settings['social_instagram_link'] }}" class="instagram__header-link instagram-header-link">
+      {% render 'icon-instagram' %}
+      {% assign instagramHandle = settings['social_instagram_link'] | split: '/' %}
+      {% assign handleSize = instagramHandle | size | minus: 1 %}
+      {% assign instagramHandle = instagramHandle[handleSize] %}
+      @{{ instagramHandle}}
+    </a>
+  </header>
+  <ul class="instagram__feed juicer-feed" data-feed-id="superrb" data-feed-limit="3"></ul>
+</section>
+
