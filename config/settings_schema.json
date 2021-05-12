@@ -17,32 +17,27 @@
       {
         "type": "text",
         "id": "address_street",
-        "label": "Street address",
-        "default": "14 The Precinct"
+        "label": "Street address"
       },
       {
         "type": "text",
         "id": "address_city",
-        "label": "City",
-        "default": "Hayling Island"
+        "label": "City"
       },
       {
         "type": "text",
         "id": "address_county",
-        "label": "County",
-        "default": "Hampshire"
+        "label": "County"
       },
       {
         "type": "text",
         "id": "address_postcode",
-        "label": "Postcode",
-        "default": "PO11 9BS"
+        "label": "Postcode"
       },
       {
         "type": "text",
         "id": "address_country",
-        "label": "Country",
-        "default": "UK"
+        "label": "Country"
       },
       {
         "type": "text",
@@ -61,14 +56,12 @@
       {
         "type": "text",
         "id": "company_email",
-        "label": "Email",
-        "default": "hello@superrb.com"
+        "label": "Email"
       },
       {
         "type": "text",
         "id": "company_phone",
-        "label": "Phone",
-        "default": "+44 20 3397 9784"
+        "label": "Phone"
       }
     ]
   },
@@ -117,12 +110,6 @@
       {
         "type": "header",
         "content": "Social sharing"
-      },
-      {
-        "type": "checkbox",
-        "id": "social_sharing_blog",
-        "label": "Enable sharing for blog articles",
-        "default": true
       },
       {
         "type": "checkbox",
