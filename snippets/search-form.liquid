@@ -10,16 +10,16 @@
   {% endcomment %}
   <input type="hidden" name="type" value="{% if search.types contains 'product' %}product{% else if search.types contains 'page' %}page{% else %}article{% endif %}" />
   <div class="form__row form-row form-row--search">
-    <label for="Search" class="screenreader-text">
-      {{ 'search.placeholder' | t }}
-    </label>
     <input type="search"
         name="q"
         id="Search"
-        value="{{ search.terms | escape }}"
-        placeholder="{{ 'search.placeholder' | t }}">
+        value="{{ search.terms | escape }}">
 
-    {%- capture buttonText -%}{{ 'search.submit' | t }}{%- endcapture -%}
+    <label for="Search" class="screenreader-text">
+      {{ 'search.form.label' | t }}
+    </label>
+
+    {%- capture buttonText -%}{{ 'search.form.submit' | t }}{%- endcapture -%}
     {%- capture icon -%}{% render 'icon-search' %}{%- endcapture -%}
     {% render 'button', type: 'submit', label_a11y: buttonText, icon: icon  %}
   </div>
