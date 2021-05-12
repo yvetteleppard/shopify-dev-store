@@ -80,7 +80,7 @@
     },
     "heading": "Search result(s)",
     "results_with_count": "{{ count }} result(s) for \"{{ terms }}\"",
-    "no_results_html": "Please try a different search term or go back to the <a href=\"/\">homepage</a>."
+    "no_results_html": "Please try a different search term or go back to the <a href=\"\/\">homepage<\/a>."
   },
   "footer": {
     "social_platform": "{{ name }} on {{ platform }}",
@@ -118,7 +118,7 @@
       "adding_to_basket": "Adding to basket",
       "unit_price_label": "Unit price",
       "include_taxes": "Tax included.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping<\/a> calculated at checkout."
     },
     "recommendations": {
       "title": "You may also like"
