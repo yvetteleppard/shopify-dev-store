@@ -41,9 +41,9 @@
     "accept": "Accept"
   },
   "404": {
-    "title": "404 Page Not Found",
-    "subtext": "The page you requested does not exist.",
-    "home": "Back to home"
+    "subtitle": "Ooops, looks like we lost you",
+    "title": "Sorry, this page doesn't exist, let's get you back on track.",
+    "home": "Return home"
   },
   "blog": {
     "general": {
@@ -71,8 +71,10 @@
   "search": {
     "title": "Search",
     "results_title": "Search results for \"{{ terms }}\"",
-    "placeholder": "Search",
-    "submit": "Search",
+    "form": {
+      "label": "Search",
+      "submit": "Search"
+    },
     "filters": {
       "products": "Products",
       "posts": "Articles",
@@ -84,7 +86,7 @@
   },
   "footer": {
     "social_platform": "{{ name }} on {{ platform }}",
-    "copyright": "Copyright",
+    "copyright": "© Copyright",
     "payment_methods": "Payment methods accepted",
     "website_by": "Website by",
     "superrb": "Superrb"
