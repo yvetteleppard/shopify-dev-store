@@ -27,9 +27,17 @@ export default class Cart {
   @bind
   reloadCart (items, itemCount, totalPrice) {
 
+    if(items.length < this.cartRows.length){
+      this.cartRows.forEach(cartRow => {
+        cartRow.classList.add('hide')
+      })
+    }
+
     items.forEach(item => {
+
       this.cartRows.forEach(cartRow => {
         if(parseInt(cartRow.dataset.product) === item.id){
+          cartRow.classList.remove('hide')
           const rowTotal = cartRow.querySelector('span[data-cart-item-regular-price]')
           const finalPrice = cartRow.querySelector('span[data-cart-item-final-price]')
           const originalPrice = cartRow.querySelector('s[data-cart-item-original-price]')

@@ -6,12 +6,12 @@ export default class MiniCart {
 
   miniCart = document.querySelector('.mini-cart')
 
-  addToCartForms = document.querySelectorAll('form[action="/cart/add"]')
-
-  cartCount = document.querySelector('.actions__cart-count')
+  cartCount = document.querySelector('.main-header-actions__cart-count')
 
   constructor () {
-    this.registerListeners()
+    document.addEventListener('css:load', e => {
+      this.registerListeners()
+    })
   }
 
   @bind
@@ -20,26 +20,40 @@ export default class MiniCart {
       return
     }
 
-
     this.miniCartInner = this.miniCart.querySelector('.mini-cart__inner')
     this.miniCartError = this.miniCart.querySelector('.mini-cart__error')
     this.miniCartClose = this.miniCart.querySelector('.mini-cart__header-close')
 
     this.miniCart.addEventListener('click', this.closeMiniCart)
-    this.miniCartClose.addEventListener('click', this.closeMiniCart)
+    this.miniCartClose.addEventListener('click', e => {
+      e.stopPropagation()
+      this.closeMiniCart()
+    } )
 
     this.miniCartInner.addEventListener('click', e => {
       e.stopPropagation()
     })
 
-    this.reloadMiniCart()
+    setTimeout(() => {
+      // It may sound silly, but i'm almost certain this specific function has been breaking other JS due to performance issues.
+      // Due to that, I've delayed it by 3 seconds with the assumption that no user is maniclly opening the mini cart. And worst case scenario is, it builds out in front of them anyways.
+      this.reloadMiniCart(false)
+    }, 3000)
+
+    this.setupAddToCartForms()
+
+  }
+
+  @bind
+  setupAddToCartForms(){
+
+    this.addToCartForms = document.querySelectorAll('form[action="/cart/add"]')
 
     if (this.addToCartForms.length > 0) {
       this.addToCartForms.forEach(form => {
         form.addEventListener('submit', this.addToCart)
       })
     }
-
   }
 
   @bind
@@ -69,6 +83,7 @@ export default class MiniCart {
     const btn = t.querySelector('button[data-submit-button')
     const formData = new FormData(t);
     const showCart = true
+
 
     this.loadingButton(btn)
 
@@ -102,9 +117,11 @@ export default class MiniCart {
       const itemCount = data.item_count
       const totalPrice = data.total_price
 
-      console.log(data)
-
       this.buildCart(items, itemCount, totalPrice)
+
+      if (document.body.classList.contains('template-cart')) {
+        window.app.components.cart.reloadCart(items, itemCount, totalPrice)
+      }
 
       if(showCart){
         this.openMiniCart()
@@ -122,15 +139,19 @@ export default class MiniCart {
       this.miniCart.classList.remove('mini-cart--empty')
       miniCartItems = items.map(this.miniCartProduct)
       miniCartItems = miniCartItems.join('')
-      this.cartCount.classList.add('actions__cart-count--active')
+      this.cartCount.classList.add('main-header-actions__cart-count--active')
     } else {
       this.miniCart.classList.add('mini-cart--empty')
-      this.cartCount.classList.remove('actions__cart-count--active')
+      this.cartCount.classList.remove('main-header-actions__cart-count--active')
     }
 
     this.cartCount.querySelector('span').innerHTML = itemCount > 99 ? '99+' : itemCount
     this.miniCart.querySelector('.mini-cart-items').innerHTML = miniCartItems
-    this.miniCart.querySelector('.mini-cart__footer-checkout .button__label span').innerHTML = this.formatPrice(totalPrice)
+    const buttonTotalLabels = this.miniCart.querySelectorAll('.mini-cart__footer-checkout .button__label span')
+    buttonTotalLabels.forEach(label => {
+      label.innerHTML = this.formatPrice(totalPrice)
+    })
+
     this.setupMiniCartRemoves()
     this.toggleMiniCartError(false)
   }
@@ -144,12 +165,13 @@ export default class MiniCart {
     return `<div class="mini-cart-items__item mini-cart-item">
               <a href="${item.url}" title="${item.product_title}" class="mini-cart-item__image objFit">
                 <figure  class="mini-cart-item__image-wrap">
-                  ${item.image ? `<img class="mini-cart-item__image-img" src="${item.image}" sizes="7em" alt="${item.product_title}">` : null}
+                  ${item.image ? `<img class="mini-cart-item__image-img" src="${item.image}" sizes="7em" alt="${item.product_title}">` : ''}
                 </figure>
               </a>
               <div class="mini-cart-item__info">
                 <a href="${item.url}" class="mini-cart-item__info-title">${item.product_title}</a>
-                ${item.variant_title ? `<div class="mini-cart-item__info-variant"><span class="${ variantOption } ${ variantOption }--${ variantValue }"></span>${item.variant_title}</div>` : ''}
+                ${item.variant_title ? `<div class="mini-cart-item__info-variant"><span class="${ variantOption } ${ variantOption }--${ variantValue }">${ variantOption }:</span>${item.variant_title}</div>` : ''}
+                ${item.selling_plan_allocation ? `<div class="mini-cart-item__info-plan">${item.selling_plan_allocation.selling_plan.name}</div>` : ''}
                 <div class="mini-cart-item__info-price">${this.formatPrice(item.price)}</div>
                 <div class="quantity-incrementor mini-cart-item__info-quantity" data-variant-id="${item.variant_id}">
                   <label for="Quantity" class="quantity-incrementor__label screenreader-text">${window.theme.strings.quantity}:</label>
@@ -174,15 +196,29 @@ export default class MiniCart {
   @bind
   deleteLineItem (e, incrementor) {
 
-    e.stopPropagation()
-    e.preventDefault()
+    let el
+    let postUrl
 
-    const t = e.currentTarget
-    t.classList.add('mini-cart-item__info-clear--delete')
+    if(incrementor){
+      if (document.body.classList.contains('template-cart')) {
+        el = incrementor.parentNode.parentNode.querySelector('.cart-remove')
+      } else {
+        el = incrementor.parentNode.querySelector('.mini-cart-item__info-clear')
+      }
 
-    const url = t.href
+      postUrl = el.href
 
-    fetch(url,{
+    } else {
+
+      e.stopPropagation()
+      e.preventDefault()
+      const eTarget = e.currentTarget || e.target
+      postUrl = e.currentTarget.href
+      el = eTarget.parentNode
+
+    }
+
+    fetch(postUrl,{
       method: 'POST',
     })
     .then(response => {
@@ -190,8 +226,41 @@ export default class MiniCart {
       return response.json();
     })
     .catch((error) => {
-      this.toggleMiniCartError(true, error)
+      this.toggleMiniCartError(false, error)
     });
+
+  }
+
+  @bind
+  updateCart(variantId, newQuantity){
+
+    if(variantId && newQuantity){
+
+      const data = {
+        updates: {}
+      }
+
+      data.updates[variantId] = newQuantity
+
+      fetch('/cart/update.js', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        this.reloadMiniCart()
+        return response.json();
+      })
+      .catch((error) => {
+        this.toggleMiniCartError(true, error)
+      });
+
+    } else {
+      this.toggleMiniCartError(true, error)
+    }
 
   }
 
@@ -208,11 +277,11 @@ export default class MiniCart {
 
   @bind
   toggleMiniCartError (error, errorMessage = '') {
-    console.error('Error:', errorMessage);
 
     const message = window.theme.strings.miniCartError
 
     if (error) {
+      console.error('Error:', errorMessage);
       this.miniCartError.classList.add('mini-cart__error--active')
       this.miniCartError.innerHTML = message
     } else {

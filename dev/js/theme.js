@@ -24,16 +24,76 @@ class Theme {
    *
    * @type {object}
    */
-  components = {}
+   components = {}
 
-  /**
-   * Create the application instance
-   */
-  constructor() {
+   /**
+    * Create the application instance
+    */
+   constructor() {
 
-    this.registerComponents()
+     this.registerComponents()
+     this.registerCSSOnLoadEvent()
 
-  }
+   }
+
+   /**
+    * Register an onload event for CSS stylesheets (both sync and async)
+    */
+    registerCSSOnLoadEvent() {
+     const stylesheets = document.styleSheets
+     const promises = Array.from(stylesheets).map(stylesheet => {
+       return new Promise((resolve, reject) => {
+         // Stylesheets embedded in style tags will not have a href, and will never
+         // fire the load event
+         if (stylesheet.href === null) {
+           return resolve(stylesheet)
+         }
+
+         // Stylesheets from third-party domains cannot be parsed due to CORS restrictions
+         const url = new URL(stylesheet.href)
+         if (url.host !== window.location.host) {
+           return resolve(stylesheet)
+         }
+
+         // Add an event listener for the load of event on the stylesheet's link
+         if (stylesheet.ownerNode) {
+           stylesheet.ownerNode.addEventListener('load', e => {
+             resolve(stylesheet)
+           })
+         }
+
+         try {
+           // See if CSS Rules already exist within the stylesheet.
+           // If they do, the stylesheet is already loaded and parsed, and we don't
+           // need to rely on the load event
+           if (stylesheet.cssRules && stylesheet.cssRules.length > 0) {
+             return resolve(stylesheet)
+           }
+         } catch (err) {
+           // InvalidAccessError is thrown if CSS has not yet finished parsing
+           // If this is the case, we let the error slide and add the event listener,
+           // but rethrow any other errors to catch legitimate bugs
+           if (err.name !== 'InvalidAccessError') {
+             throw err
+           }
+         }
+       })
+     })
+
+     Promise.all(promises)
+       .then(() => {
+         let evt
+
+         if (typeof Event === 'function') {
+           evt = new Event('css:load')
+         } else {
+           evt = document.createEvent('Event')
+           evt.initEvent('css:load', true, true)
+         }
+
+         document.dispatchEvent(evt)
+       })
+   }
 
   /**
    * Register individual application components here

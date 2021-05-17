@@ -35,7 +35,6 @@ export default class QuantityIncrementor {
       input.value = value
 
       this.updateSiteCart(incrementor, value)
-
     })
 
     minus.addEventListener('click', e => {
@@ -43,14 +42,13 @@ export default class QuantityIncrementor {
       clearTimeout(this.timer)
 
       let value = parseInt(input.value, 10)
-      if (value > 1) {
+      if (value > 0) {
         value = isNaN(value) ? 1 : value
         value--
         input.value = value
       }
 
       this.updateSiteCart(incrementor, value)
-
     })
 
     input.addEventListener('keyup', e => {
@@ -59,8 +57,7 @@ export default class QuantityIncrementor {
 
       let value = parseInt(input.value, 10)
 
-      if (value < 0) {
-        value = 0
+      if (value <= 1) {
         input.value = 0
       } else if (value > 999) {
         value = 999
@@ -75,20 +72,10 @@ export default class QuantityIncrementor {
   updateSiteCart(incrementor, value) {
     if (incrementor.dataset.variantId) {
       this.timer = setTimeout(e => {
-        if (document.body.classList.contains('template-cart')) {
-          if (value === 0) {
-            window.app.cart.deleteLineItem(null, incrementor)
-          } else {
-            window.app.cart.updateCart(incrementor.dataset.variantId, incrementor.dataset.index, value)
-          }
-
+        if (value === 0) {
+          window.app.components.miniCart.deleteLineItem(null, incrementor)
         } else {
-          if (value === 0) {
-            window.app.miniCart.deleteLineItem(null, incrementor)
-          } else {
-            window.app.miniCart.updateCart(incrementor.dataset.variantId, value)
-          }
-
+          window.app.components.miniCart.updateCart(incrementor.dataset.variantId, value)
         }
       }, 500)
     }
